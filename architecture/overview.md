@@ -12,6 +12,7 @@
     - [SNS](#sns)
   - [Technologies](#technologies)
     - [Front-end to implement with Angular](#front-end-to-implement-with-angular)
+    - [Routing](#routing)
     - [Back-end to implement with SQL in Azure](#back-end-to-implement-with-sql-in-azure)
       - [SKills](#skills-1)
         - [Query](#query)
@@ -74,15 +75,32 @@ GitHub
 ```
 ng new pome
 ng generate component title
-ng generate component portofolio_list
+
 ng generate component portofoliopage
 ng generate component profile_skills
-ng generate component skill_card
 ng generate component profile_experiences
-ng generate component experience_card
-ng generate component profile_about
+ng generate component projectpage
 ng generate component profilepage
+ng generate component contact
+
+ng generate component experience_card
+ng generate component skill_card
+ng generate component project_card
+
+ng generate component profile_about
+ng generate component portofolio_list
+
 ```
+### Routing
+app includes
+- link to the pages
+- title
+
+app->projectpage
+app->profile_skills
+app->profile_experience
+app->profilepage
+app->contact
 
 ### Back-end to implement with SQL in Azure
 

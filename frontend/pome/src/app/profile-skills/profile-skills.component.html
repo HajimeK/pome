@@ -1,0 +1,7 @@
+<p>profile-skills works!</p>
+
+<div class="content">
+    <div fxLayout="row wrap" fxLayoutGap="20px" *ngFor="let skill of skills">
+        <app-skill-card title={{skill.item}} level={{skill.level}} description={{skill.description}}></app-skill-card>
+    </div>
+</div>
