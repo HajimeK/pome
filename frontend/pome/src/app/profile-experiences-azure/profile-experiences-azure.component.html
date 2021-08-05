@@ -1,0 +1,7 @@
+<div class="content">
+    <div fxLayout="row wrap" fxLayoutGap="1.5% grid">
+        <div fxFlex="25" fxFlex.sm="33.3" fxFlex.xs="50" *ngFor="let experience of experiences">
+            <app-experience-card name={{experience.name}} description={{experience.description}} url={{experience.url}}></app-experience-card>
+        </div>
+    </div>
+</div>

@@ -76,19 +76,16 @@ GitHub
 ng new pome
 ng generate component title
 
-ng generate component portofoliopage
 ng generate component profile_skills
 ng generate component profile_experiences
-ng generate component projectpage
-ng generate component profilepage
+ng generate component profile_experiences_aiml
+ng generate component profile_experiences_azure
+ng generate component profile_experiences_iot
+ng generate component profile_experiences_blockchain
 ng generate component contact
 
 ng generate component experience_card
 ng generate component skill_card
-ng generate component project_card
-
-ng generate component profile_about
-ng generate component portofolio_list
 
 ```
 ### Routing
