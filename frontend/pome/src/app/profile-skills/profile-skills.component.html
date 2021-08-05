@@ -1,7 +1,10 @@
-<div class="content">
-    <div fxLayout="row wrap" fxLayoutGap="1.5% grid">
-        <div fxFlex="25" fxFlex.sm="33.3" fxFlex.xs="50" *ngFor="let skill of skills">
-            <app-skill-card title={{skill.item}} level={{skill.level}} description={{skill.description}}></app-skill-card>
+<h2 class="string">Skills</h2>
+<div class="item" data-aos="flip-up">
+    <div class="content">
+        <div fxLayout="row wrap" fxLayoutGap="1.5% grid">
+            <div *ngFor="let skill of skills">
+                <app-skill-card title={{skill.item}} level={{skill.level}} description={{skill.description}}></app-skill-card>
+            </div>
         </div>
     </div>
 </div>

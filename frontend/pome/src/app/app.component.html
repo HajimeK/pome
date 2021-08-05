@@ -1,86 +1,88 @@
 
 
-<div>
-  <carousel>
-    <slide>
-      <app-title></app-title>
-    </slide>
-    <slide>
+<div class="container-fluid">
+  <div class="col-md-8 col-xs-12 col-md-offset-2 push-md-2">
+    <carousel [itemsPerSlide]=1 [showIndicators]=false [pauseOnFocus]=true>
+      <slide>
+        <app-title></app-title>
+      </slide>
+      <slide>
         <app-profile-experiences-aiml></app-profile-experiences-aiml>
-    </slide>
-    <slide>
-      <app-profile-experiences-azure></app-profile-experiences-azure>
-    </slide>
-    <slide>
-      <app-profile-experiences-iot></app-profile-experiences-iot>
-    </slide>
-    <slide>
-      <app-profile-experiences-blockchain></app-profile-experiences-blockchain>
-    </slide>
-    <slide>
-      <app-profile-skills></app-profile-skills>
-    </slide>
-    <slide>
-      <app-contact></app-contact>
-    </slide>
-</carousel>
+      </slide>
+      <slide>
+        <app-profile-experiences-azure></app-profile-experiences-azure>
+      </slide>
+      <slide>
+        <app-profile-experiences-iot></app-profile-experiences-iot>
+      </slide>
+      <slide>
+        <app-profile-experiences-blockchain></app-profile-experiences-blockchain>
+      </slide>
+      <slide>
+        <app-profile-skills></app-profile-skills>
+      </slide>
+      <slide>
+        <app-contact></app-contact>
+      </slide>
+    </carousel>
+  </div>
 </div>
 <!--
-
-<section>
-  <div class="clearfix"></div>
-  <div class="container about-us">
-    <div class="row">
-      <div class="col-md-6" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-mirror="true" data-aos-once="true" data-aos-anchor-placement="center-center">
-        <app-title></app-title>
+  
+  <section>
+    <div class="clearfix"></div>
+    <div class="container about-us">
+      <div class="row">
+        <div class="col-md-6" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-mirror="true" data-aos-once="true" data-aos-anchor-placement="center-center">
+          <app-title></app-title>
+        </div>
       </div>
     </div>
-  </div>
-</section>
-<section>
-  <div class="clearfix"></div>
-  <div class="row">
-    <div class="col-md-6" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-mirror="true" data-aos-once="true" data-aos-anchor-placement="center-center">
-      <app-profile-experiences-aiml></app-profile-experiences-aiml>
+  </section>
+  <section>
+    <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-md-6" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-mirror="true" data-aos-once="true" data-aos-anchor-placement="center-center">
+        <app-profile-experiences-aiml></app-profile-experiences-aiml>
+      </div>
     </div>
-  </div>
-</section>
-<section>
-  <div class="clearfix"></div>
-  <div class="row">
-    <div class="col-md-6" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-mirror="true" data-aos-once="true" data-aos-anchor-placement="center-center">
-      <app-profile-experiences-azure></app-profile-experiences-azure>
+  </section>
+  <section>
+    <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-md-6" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-mirror="true" data-aos-once="true" data-aos-anchor-placement="center-center">
+        <app-profile-experiences-azure></app-profile-experiences-azure>
+      </div>
     </div>
-  </div>
-</section>
-<section>
-  <div class="clearfix"></div>
-  <div class="row">
-    <div class="col-md-6" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-mirror="true" data-aos-once="true" data-aos-anchor-placement="center-center">
-      <app-profile-experiences-iot></app-profile-experiences-iot>
+  </section>
+  <section>
+    <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-md-6" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-mirror="true" data-aos-once="true" data-aos-anchor-placement="center-center">
+        <app-profile-experiences-iot></app-profile-experiences-iot>
+      </div>
     </div>
-  </div>
-</section>
-<section>
-  <div class="clearfix"></div>
-  <div class="row">
-    <div class="col-md-6" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-mirror="true" data-aos-once="true" data-aos-anchor-placement="center-center">
-      <app-profile-experiences-blockchain></app-profile-experiences-blockchain>
+  </section>
+  <section>
+    <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-md-6" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-mirror="true" data-aos-once="true" data-aos-anchor-placement="center-center">
+        <app-profile-experiences-blockchain></app-profile-experiences-blockchain>
+      </div>
     </div>
-  </div>
-</section>
-<section>
-  <div class="row">
-    <div class="col-md-6" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-mirror="true" data-aos-once="true" data-aos-anchor-placement="center-center">
-      <app-profile-skills></app-profile-skills>
+  </section>
+  <section>
+    <div class="row">
+      <div class="col-md-6" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-mirror="true" data-aos-once="true" data-aos-anchor-placement="center-center">
+        <app-profile-skills></app-profile-skills>
+      </div>
     </div>
-  </div>
-</section>
-<section>
-  <div class="row">
-    <div class="col-md-6" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-mirror="true" data-aos-once="true" data-aos-anchor-placement="center-center">
-      <app-contact></app-contact>
-    </div> 
-  </div>
-</section>
+  </section>
+  <section>
+    <div class="row">
+      <div class="col-md-6" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-mirror="true" data-aos-once="true" data-aos-anchor-placement="center-center">
+        <app-contact></app-contact>
+      </div> 
+    </div>
+  </section>
 -->

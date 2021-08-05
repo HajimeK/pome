@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { setTheme } from 'ngx-bootstrap/utils';
 declare let AOS: any;
 
 @Component({
@@ -10,5 +11,6 @@ export class AppComponent {
   title = 'pome';
   ngOnInit(){
     AOS.init();
+    setTheme('bs4')
   }
 }
