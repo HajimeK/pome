@@ -11,7 +11,7 @@
   :host {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 14px;
-    color: #333;
+    color: rgb(196, 194, 194);
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -302,16 +302,84 @@
       visibility: hidden;
     }
   }
+
 </style>
 
-<nav>
-  <a routerLink="/projectpage">Projects</a><p></p>
-  <a routerLink="/profile_skills">Skills</a><p></p>
-  <a routerLink="/profile_experience">Experiences</a><p></p>
-  <a routerLink="/profilepage">Profile</a><p></p>
-  <a routerLink="/contact">Contact</a><p></p>
-</nav>
-<router-outlet></router-outlet>
-<div  fxLayout="row" fxLayoutAlign="end end">
-  <app-title></app-title>
+<!-- <div  fxLayout="row" fxLayoutAlign="start start">
+  
+</div> -->
+<!-- <nav>
+  <div  fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="start start">
+    <a routerLink="/projectpage">Projects</a><p></p>
+    <a routerLink="/profile_experience">Experiences</a>
+    <a routerLink="/profile_skills">Skills</a>
+    <a routerLink="/profilepage">Profile</a><p></p>
+    <a routerLink="/contact">Contact</a>
+  </div>
+</nav> -->
+<!-- <p></p> -->
+
+<section>
+  <div class="clearfix"></div>
+  <div class="container about-us">
+    <div class="row">
+      <div class="col-md-6" data-aos="fade"
+      data-aos-offset="200"
+      data-aos-delay="50"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out"
+      data-aos-mirror="true"
+      data-aos-once="true"
+      data-aos-anchor-placement="center-center">
+        <div fxFlexFill>
+          <app-title></app-title>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="clearfix"></div>
+  <div class="row">
+    <div class="col-md-6" data-aos="flip-up"
+    data-aos-offset="200"
+    data-aos-delay="50"
+    data-aos-duration="1000"
+    data-aos-easing="ease-in-out"
+    data-aos-mirror="true"
+    data-aos-once="false"
+    data-aos-anchor-placement="top-center">
+      <app-profile-experiences></app-profile-experiences>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="row">
+    <div class="col-md-6" data-aos="flip-up"
+    data-aos-offset="200"
+    data-aos-delay="50"
+    data-aos-duration="1000"
+    data-aos-easing="ease-in-out"
+    data-aos-mirror="true"
+    data-aos-once="false"
+    data-aos-anchor-placement="top-center">
+      <app-profile-skills></app-profile-skills>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="row">
+    <div class="col-md-6" data-aos="fade-up"
+    data-aos-offset="200"
+    data-aos-delay="50"
+    data-aos-duration="1000"
+    data-aos-easing="ease-in-out"
+    data-aos-mirror="true"
+    data-aos-once="false"
+    data-aos-anchor-placement="center-center">
+      <app-contact></app-contact>
+    </div> 
+  </div>
+</section>
+<div class="jd1 mb-40">
 </div>

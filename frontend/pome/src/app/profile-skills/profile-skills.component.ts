@@ -34,6 +34,31 @@ export class ProfileSkillsComponent implements OnInit {
       level: 'intermediate'
     },
     {
+      item: 'Azure Development',
+      description: 'Build applications on top of Azure',
+      level: 'intermediate'
+    },
+    {
+      item: 'Azure ML',
+      description: 'Run MLOps on tops of Azure',
+      level: 'intermediate'
+    },
+    {
+      item: 'Machine Learning',
+      description: 'Create models with machine learning models with Scikit-Learn',
+      level: 'intermediate'
+    },
+    {
+      item: 'Deep Learning',
+      description: 'Create models with Keras, PyTorch and consume those models REST',
+      level: 'intermediate'
+    },
+    {
+      item: 'Stock market quantitative analysis',
+      description: 'Run alpha analysis with Python',
+      level: 'beginner'
+    },
+    {
       item: 'Solution Architect',
       description:'Design solutions with globally understadable architecture',
       level: 'Senior'
