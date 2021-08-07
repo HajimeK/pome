@@ -1,6 +1,23 @@
-<h2 class="string">Blockchain Ethereum Development experiences</h2>
-<div class="content" data-aos="flip-up" fxLayout="row wrap" fxLayoutGap="1.5% grid">
-    <div *ngFor="let experience of experiences">
-        <app-experience-card name={{experience.name}} description={{experience.description}} url={{experience.url}}></app-experience-card>
+<div class="out">
+    <div class="content" data-aos="flip-up"data-aos-offset="200" data-aos-delay="50" data-aos-duration="1500">
+        <h2 class="string">Blockchain Ethereum Development experiences</h2>
+        <div class="content" fxLayout="row wrap" fxLayoutGap="1.5% grid">
+            <div *ngFor="let experience of experiences">
+                <app-experience-card name={{experience.name}} description={{experience.description}} url={{experience.url}}></app-experience-card>
+            </div>
+        </div>
+        <p></p>
+        <div class="content" fxLayoutAlign="end end">
+            <div data-aos="fade-righ"
+            data-aos-easing="linear"
+            data-aos-duration="1500"
+            align="left">
+                Blockchain is the emerging technology with variety of potentials.<p> </p>
+                That is a compolete technology to give business to IT in a true sence.<p> </p>
+                Here we pick Ethereum in Blockchain.<p></p>
+                With its smart contract capability assessts incorporated in to IT can be exchanges with light speed.<p> </p>
+            </div>
+        </div>
+
     </div>
 </div>

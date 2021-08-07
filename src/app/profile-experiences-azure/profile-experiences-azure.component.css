@@ -1,3 +1,9 @@
+.out {
+    display: table;
+    width: 100vw;
+    height: 100vh;
+  }
+
 .string {
     font-size: 30px;
     color: #d4ceda;

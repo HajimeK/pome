@@ -12,7 +12,7 @@
     - [SNS](#sns)
   - [Technologies](#technologies)
     - [Front-end to implement with Angular](#front-end-to-implement-with-angular)
-    - [Routing](#routing)
+      - [Deploy to GitHub Page](#deploy-to-github-page)
     - [Back-end to implement with SQL in Azure](#back-end-to-implement-with-sql-in-azure)
       - [SKills](#skills-1)
         - [Query](#query)
@@ -88,16 +88,13 @@ ng generate component experience_card
 ng generate component skill_card
 
 ```
-### Routing
-app includes
-- link to the pages
-- title
 
-app->projectpage
-app->profile_skills
-app->profile_experience
-app->profilepage
-app->contact
+#### Deploy to GitHub Page
+
+```
+ng build --prod  --base-href="https://hajimek.github.io/pome/"
+ngh --dir="dist/pome"
+```
 
 ### Back-end to implement with SQL in Azure
 
