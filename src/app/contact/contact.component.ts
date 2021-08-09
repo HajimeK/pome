@@ -35,8 +35,8 @@ export class ContactComponent implements OnInit {
   private sendURL = "https://pomeinquiryfunction.azurewebsites.net/api/pmeinquiryfunction";
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'text/plain' })
-  };
+    headers: new HttpHeaders({ 'Content-Type': 'text/plain',
+                               'Origin': 'https://hajimek.github.io' })};
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
   }
