@@ -27,7 +27,7 @@
 			"isBackground": true,
 			"dependsOn": "pip install (functions)",
 			"options": {
-				"cwd": "${workspaceFolder}/functions"
+				"cwd": "${workspaceFolder}/backend\\functions"
 			}
 		},
 		{
@@ -44,7 +44,7 @@
 			},
 			"problemMatcher": [],
 			"options": {
-				"cwd": "${workspaceFolder}/functions"
+				"cwd": "${workspaceFolder}/backend\\functions"
 			}
 		}
 	]

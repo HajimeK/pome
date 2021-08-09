@@ -293,7 +293,6 @@ svg#clouds {
     }
 }
 
-
 .content > mat-card {
     width: 150px;
 }
@@ -303,6 +302,10 @@ svg#clouds {
 }
 .carousel-control.right {
     display: none;
+}
+.full-width {
+    margin-left: calc(-50vw + 49%);
+    margin-right: calc(-50vw + 49%);
 }
 
 

@@ -4,7 +4,11 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -41,6 +45,10 @@ import { ProfileExperiencesBlockchainComponent } from './profile-experiences-blo
     FlexLayoutModule,
     MatCardModule,
     MatIconModule,
+    MatSelectModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     CarouselModule.forRoot()
   ],
   providers: [],
