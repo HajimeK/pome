@@ -25,7 +25,7 @@ export class ContactComponent implements OnInit {
     {value: 'offer', viewValue: 'Job Offer'}
   ];
   sent: string = "";
-  sent_message: string = "Thank you for filling the form. I will respond you back in ??? business days. <p> </p>";
+  sent_message: string = "Thank you for filling the form. I will respond you back in ??? business days.";
   inquiryForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     message: new FormControl(''),

@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileExperiencesAzureComponent implements OnInit {
   experiences = [
-    {name:"AutoML with Azure ML", description: "build and optimize an Azure ML pipeline using the Python SDK and a provided Scikit-learn model. This model is then compared to an Azure AutoML run.", url: "https://github.com/HajimeK/nd00333_AZMLND_Optimizing_a_Pipeline_in_Azure-Starter_Files"},
+    {name:"AutoML with Azure ML", description: "build and optimize an Azure ML pipeline using the Python SDK and a provided Scikit-learn model. This model is then compared to an Azure AutoML run.", url: "https://github.com/HajimeK/AzureML_Optimizing_a_Pipeline"},
     {name:"MLOps with Azure ML", description: "Deploy trained models to an end point what is consumable with REST API calls", url: "https://github.com/HajimeK/nd00333_AZMLND_C2/tree/master/starter_files"},
     {name:"Azure ML with real data", description: "Using an traditional census data in Machine Learning studies, here I have derived prediction models to find potential donors. If the income is expected larger than 50K, we find the person as potential donors and put emphasis on the activity to ask for donations.", url: "https://github.com/HajimeK/nd00333-capstone"},
     {name:"Azure Performance", description: "Investigate Azure perfomance using Application Insights, Logs and etc, and autoscale when needed", url: "https://github.com/HajimeK/nd081-c4-azure-performance-project-starter"},

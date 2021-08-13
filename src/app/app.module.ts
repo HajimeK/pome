@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { TextFieldModule } from '@angular/cdk/text-field';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -47,6 +48,7 @@ import { ProfileExperiencesBlockchainComponent } from './profile-experiences-blo
     MatIconModule,
     MatSelectModule,
     MatInputModule,
+    TextFieldModule,
     ReactiveFormsModule,
     HttpClientModule,
     CarouselModule.forRoot()
