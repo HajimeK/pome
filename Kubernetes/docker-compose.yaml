@@ -22,12 +22,20 @@ services:
             ME_CONFIG_MONGODB_ADMINPASSWORD: p@ssw0d9876 # change after created
             ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
 
-    azure-vote-front:
-        build: .        // ※2
-        ports:
-            - "8080:80"        // ※3
+    middle:
+        build: ./middle
         volumes:
-              - ./public:/usr/share/nginx/html        // ※4
-        container_name: pome-front
+            - ./code:/code
+        restart: always
+        ports:
+            - 5000:5000
+
+    front:
+        build: ./front
+        ports:
+            - "8080:80"
+        volumes:
+              - ./public:/usr/share/nginx/html
+        container_name: front
         environment:
-        MONGO: pome-back
+            MONGO: mongo
