@@ -1,6 +1,5 @@
-FROM python:alpine
-RUN MKDIR /code
-COPY ./code /code
+FROM python:3.9-slim
 WORKDIR /code
+COPY ./code /code
 RUN pip install -r requirements.txt
-CMD ["python", "middle.py"]
+RUN python /code/middle.py

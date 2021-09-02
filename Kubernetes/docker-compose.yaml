@@ -1,26 +1,31 @@
-version: '1'
+# To launch: "sudo docker-compose up -d"
+# To stop : "sudo docker-compose down"
+version: '3.9'
 services:
-    mongo:
-        image: mongo
-        restart: always
-        environment:
-            MONGO_INITDB_ROOT_USERNAME: root
-            MONGO_INITDB_ROOT_PASSWORD: p@ssw0d9876 # change after created
-        ports:
-            - 27017:27017
-        volumes:
-            - ./db:/data/db
-            - ./configdb:/data/configdb
-
     mongo-express:
         image: mongo-express
-        restart: always
         ports:
             - 8081:8081
         environment:
+            ME_CONFIG_BASICAUTH_USERNAME: mongoexpress
+            ME_CONFIG_BASICAUTH_PASSWORD: mongoexpress
+            ME_CONFIG_MONGODB_PORT: 27017
             ME_CONFIG_MONGODB_ADMINUSERNAME: root
-            ME_CONFIG_MONGODB_ADMINPASSWORD: p@ssw0d9876 # change after created
-            ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+            ME_CONFIG_MONGODB_ADMINPASSWORD: mongo
+        links:
+            - 'mongo:mongo'
+        depends_on:
+            - mongo
+
+    mongo:
+        image: mongo
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: mongo
+        ports:
+            - "27017:27017"
+        volumes:
+            - /home/renatogroffe/Desenvolvimento/Docker/Volumes/MongoDB:/data/db
 
     middle:
         build: ./middle
@@ -29,13 +34,19 @@ services:
         restart: always
         ports:
             - 5000:5000
+        links:
+            - 'mongo:mongo'
+        depends_on:
+            - mongo
 
     front:
         build: ./front
-        ports:
-            - "8080:80"
-        volumes:
-              - ./public:/usr/share/nginx/html
         container_name: front
+        ports:
+            - 80:80
         environment:
             MONGO: mongo
+        links:
+            - 'middle:middle'
+        depends_on:
+            - middle

@@ -1,26 +1,31 @@
 from flask import Flask
 from pymongo import MongoClient
 
+
+client = MongoClient("mongo", 27017)
+client['admin'].authenticate("root","mongo")
+#db = client.experiences
+
 middle = Flask(__name__)
 @middle.route("/")
 def index():
-    return "<h1>Hello, Flask!</h1>"
+    return client.server_info()
 
 @middle.route("/aiml")
 def aiml():
-    return .
+    return client.server_info()
 
 @middle.route("/iot")
 def iot():
-    return 
+    return client.server_info()
 
 @middle.route("/azure")
 def azure():
-    return
+    return client.server_info()
 
-@middle.route("/quant"):
+@middle.route("/quant")
 def quant():
-    return 
+    return client.server_info()
 
 if __name__ == "__main__":
-    middle.run(host="0.0.0.0", port=80, debug=True)
+    middle.run(host="0.0.0.0", port=5000, debug=True)
