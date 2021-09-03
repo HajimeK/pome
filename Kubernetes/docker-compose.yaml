@@ -16,6 +16,9 @@ services:
             - 'mongo:mongo'
         depends_on:
             - mongo
+        networks:
+            - frontend
+            - backend
 
     mongo:
         image: mongo
@@ -26,6 +29,8 @@ services:
             - "27017:27017"
         volumes:
             - /home/renatogroffe/Desenvolvimento/Docker/Volumes/MongoDB:/data/db
+        networks:
+            - backend
 
     middle:
         build: ./middle
@@ -34,10 +39,11 @@ services:
         restart: always
         ports:
             - 5000:5000
-        links:
-            - 'mongo:mongo'
         depends_on:
             - mongo
+        networks:
+            - frontend
+            - backend
 
     front:
         build: ./front
@@ -46,7 +52,22 @@ services:
             - 80:80
         environment:
             MONGO: mongo
-        links:
-            - 'middle:middle'
         depends_on:
             - middle
+        networks:
+            - frontend
+            - backend
+
+networks:
+    frontend:
+        driver: bridge
+        ipam:
+        driver: default
+        config:
+            - subnet: 192.168.10.0/24
+    backend:
+        driver: bridge
+        ipam:
+        driver: default
+        config:
+            - subnet: 192.168.20.0/24
