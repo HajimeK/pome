@@ -5,7 +5,8 @@ import time
 while True:
     try :
         client = MongoClient("mongodb://root:mongo@mongo:27017")
-        experiences = client.db.experiences
+        db = client.db
+        experiences = db.experiences
         break
     except:
         time.sleep(10)
@@ -15,7 +16,7 @@ api = Flask(__name__)
 
 @api.route("/")
 def index():
-    return "hello"
+    return "".join([e for e  in experiences.find()])
 
 @api.route("/aiml")
 def aiml():
