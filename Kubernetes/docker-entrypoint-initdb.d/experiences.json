@@ -1,0 +1,179 @@
+[
+    {
+        "id" : 1,
+        "name": "Fleet IoT",
+        "tab": [
+            "IoT"
+        ],
+        "description": "Fleet solution packaging project targeting the Japanese market. Install in-vehicle devices and collect data from platforms. From on-site data collection, provided the scoring function of the driver's behavior data using ML methods (4 months)",
+        "URL": "NA"
+    },
+    {
+        "id" : 2,
+        "name": "AutoML with Azure ML",
+        "tab": [
+            "AIML",
+            "Azure"
+        ],
+        "description": "build and optimize an Azure ML pipeline using the Python SDK and a provided Scikit-learn model. This model is then compared to an Azure AutoML run.",
+        "URL": "https://github.com/HajimeK/AzureML_Optimizing_a_Pipeline"
+    },
+    {
+        "id" : 3,
+        "name": "Azure ML with real data",
+        "tab": [
+            "AIML"
+        ],
+        "description": "Using an traditional census data in Machine Learning studies, here I have derived prediction models to find potential donors. If the income is expected larger than 50K, we find the person as potential donors and put emphasis on the activity to ask for donations.",
+        "URL": "https://github.com/HajimeK/nd00333-capstone"
+    },
+    {
+        "id" : 4,
+        "name": "Person Detection with Intel OpenVINO",
+        "tab": [
+            "AIML"
+        ],
+        "description": "Using SSD, Single Shot Multibox Detector, to detect people in real-time streaming video. Can operate both with Intel CPU embedded GPU and Intel USB VPU",
+        "URL": "https://github.com/HajimeK/nd131-openvino-fundamentals-project-starter/blob/master/WRITEUP.md"
+    },
+    {
+        "id" : 5,
+        "name": "Fleet IoT",
+        "tab": [
+            "IOT",
+            "AIML"
+        ],
+        "description": "Fleet solution packaging project targeting the Japanese market. Install in-vehicle devices and collect data from platforms. From on-site data collection, provided the scoring function of the driver's behavior data using ML methods (4 months)",
+        "URL": "NA"
+    },
+    {
+        "id" : 6,
+        "name": "AIoT, Anormaly Detection",
+        "tab": [
+            "IoT",
+            "AIML"
+        ],
+        "description": "Reducing the failure rate of trucks is critical in logictics business. A machine lerning model for predictive analytics.",
+        "URL": "https://github.com/HajimeK/machine-learning/blob/master/projects/capstone/report/capstone.md"
+    },
+    {
+        "id" : 7,
+        "name": "AIoT Streaming Analytics",
+        "tab": [
+            "IoT",
+            "AIML"
+        ],
+        "description": "Workshop to empower a partner ready for AIoT(AI+IoT) streaming analytics",
+        "URL": "NA"
+    },
+    {
+        "id" : 8,
+        "name": "MLOps with Azure ML",
+        "tab": [
+            "Azure",
+            "AIML"
+        ],
+        "description": "Deploy trained models to an end point what is consumable with REST API calls",
+        "URL": "https://github.com/HajimeK/nd00333_AZMLND_C2/tree/master/starter_files"
+    },
+    {
+        "id" : 9,
+        "name": "Azure ML with real data",
+        "tab": [
+            "Azure",
+            "AIML"
+        ],
+        "description": "Using an traditional census data in Machine Learning studies, here I have derived prediction models to find potential donors. If the income is expected larger than 50K, we find the person as potential donors and put emphasis on the activity to ask for donations.",
+        "URL": "https://github.com/HajimeK/nd00333-capstone"
+    },
+    {
+        "id" : 10,
+        "name": "Azure Performance",
+        "tab": [
+            "Azure"
+        ],
+        "description": "Investigate Azure perfomance using Application Insights, Logs and etc, and autoscale when needed",
+        "URL": "https://github.com/HajimeK/azure-performance-and-auto-scaling"
+    },
+    {
+        "id" : 11,
+        "name": "Azure Performance VMMS autoscaling",
+        "tab": [
+            "Azure"
+        ],
+        "description": "Setup an auto-scaling for a VMSS",
+        "URL": "https://github.com/HajimeK/azure-performance-and-auto-scaling/blob/master/subprojects/autoscaling-vmss/README.md"
+    },
+    {
+        "id" : 12,
+        "name": "Azure Performance with Azure Kubernetes Cluster and Runbook",
+        "tab": [
+            "Azure"
+        ],
+        "description": "Create alerts to trigger auto-scaling on an AKS cluster and trigger a RunBook to execute",
+        "URL": "https://github.com/HajimeK/azure-performance-and-auto-scaling/blob/master/subprojects/kubernetes-cluster/README.md"
+    },
+    {
+        "id" : 13,
+        "name": "Migrating to Azure",
+        "tab": [
+            "Azure"
+        ],
+        "description": "Making application to work with cloud managed services, like Azure Functions, service bus queue messaging",
+        "URL": "https://github.com/HajimeK/nd081-c3-Migrating-Non-Native-Cloud-Applications-project-starter" 
+    },
+    {
+        "id" : 14,
+        "name": "Azure Web App with REST & Cosmos DB backend",
+        "tab": [
+            "Azure"
+        ],
+        "description": "Azure Web App with REAT API withAzure Functions and Mongo DB",
+        "URL": "https://github.com/HajimeK/nd081-c2-Building-and-deploying-cloud-native-applications-from-scratch-project-starter"
+    },
+    {
+        "id" : 15,
+        "name": "CMS app on Azure with AD credential",
+        "tab": [
+            "Azure"
+        ],
+        "description": "CMS app with OAuth2 with Sign in with Microsoft using the msal library, along with app logging.",
+        "URL": "https://github.com/HajimeK/nd081-c1-provisioning-microsoft-azure-vms-project-starter/blob/master/WRITEUP.md"
+    },
+    {
+        "id" : 16,
+        "name": "Blockchain applied Supply Chaing",
+        "tab": [
+            "Blockchain"
+        ],
+        "description": "Ethereum DApp that demonstrates a Supply Chain flow between a Seller and Buyer.",    
+        "URL": "https://github.com/HajimeK/BlockchainDevND/tree/master/projects/project_6_Supply_Chain"      
+    },
+    {
+        "id" : 17,
+        "name": "Blockchian applied to Flight Insureance",
+        "tab": [
+            "Blockchain"
+        ],
+        "description": "Decentralized App withvoting algorithm for flight insurance among passengers and flight companies",
+        "URL": "https://github.com/HajimeK/BlockchainDevND/tree/master/projects/project_FlightSurety"        
+    },
+    {
+        "id" : 18,
+        "name": "Blockchain applied to NFT",
+        "tab": [
+            "Blockchain"
+        ],
+        "description": "Smart Contract app to exchange items in OpenSea market place using NFT",
+        "URL": "https://github.com/HajimeK/BlockchainDevND/tree/master/projects/project_Capstone"
+    },
+    {
+        "id" : 19,
+        "name": "Consumer Project IoT",
+        "tab": [
+            "IoT"
+        ],
+        "description": "As an engineer in a PoC to make customer product ready for IoT. Technology lead in defining subsequent commercialization requirements (1.5 year)",
+        "URL": "NA"
+    }
+]
