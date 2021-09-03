@@ -1,15 +1,20 @@
 from flask import Flask
 from pymongo import MongoClient
+import time
 
+while True:
+    try :
+        client = MongoClient("mongodb://root:mongo@mongo:27017")
+        break
+    except:
+        time.sleep(10)
+        continue
 
-client = MongoClient("mongo", 27017)
-client['admin'].authenticate("root","mongo")
-#db = client.experiences
+api = Flask(__name__)
 
-middle = Flask(__name__)
-@middle.route("/")
+@api.route("/")
 def index():
-    return client.server_info()
+    return "hello"
 
 @middle.route("/aiml")
 def aiml():
@@ -28,4 +33,4 @@ def quant():
     return client.server_info()
 
 if __name__ == "__main__":
-    middle.run(host="0.0.0.0", port=5000, debug=True)
+    api.run(host="0.0.0.0", port=5000, debug=True)
