@@ -1,6 +1,7 @@
 from flask import Flask
 from pymongo import MongoClient
 import time
+import flask
 
 while True:
     try :
@@ -16,23 +17,23 @@ api = Flask(__name__)
 
 @api.route("/")
 def index():
-    return "".join([e for e  in experiences.find()])
+    return flask.jsonify([e for e in experiences.find()])
 
 @api.route("/aiml")
 def aiml():
-    return [exps for exps in experiences.find({"tags" : { "$in" : ["AIML"] }})]
+    return flask.jsonify([e for e in experiences.find({"tags" : { "$in" : ["AIML"] }})])
 
 @api.route("/iot")
 def iot():
-    return [exps for exps in experiences.find({"tags" : { "$in" : ["IoT"] }})]
+    return flask.jsonify([e for e in experiences.find({"tags" : { "$in" : ["IoT"] }})])
 
 @api.route("/azure")
 def azure():
-    return [exps for exps in experiences.find({"tags" : { "$in" : ["Azure"] }})]
+    return flask.jsonify([e for e in experiences.find({"tags" : { "$in" : ["Azure"] }})])
 
 @api.route("/quant")
 def quant():
-    return [exps for exps in experiences.find({"tags" : { "$in" : ["Quant"] }})]
+    return flask.jsonify([e for e in experiences.find({"tags" : { "$in" : ["Quant"] }})])
 
 if __name__ == "__main__":
     api.run(host="0.0.0.0", port=5000, debug=True)
