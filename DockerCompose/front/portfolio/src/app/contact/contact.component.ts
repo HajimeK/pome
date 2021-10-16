@@ -1,10 +1,7 @@
 import { Component, OnInit , Injectable } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry, map } from 'rxjs/operators';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 interface Categories {
   value: string;
@@ -50,25 +47,6 @@ export class ContactComponent implements OnInit {
     // let result = this.http.post<JSON>(this.sendURL, JSON.stringify(this.inquiryForm.value), this.httpOptions);
     let result = this.http.post<JSON>(this.sendURL, this.inquiryForm.value, this.httpOptions)
     .toPromise();
-    //.pipe(map((response: any) => console.info(response.json())));
-    // .pipe(
-    //   catchError(this.handleError)
-    // );
     console.info(result);
-  }
-
-  private handleError(error: HttpErrorResponse) {
-    if (error.status === 0) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong.
-      console.error(
-        `Backend returned code ${error.status}, body was: `, error.error);
-    }
-    // Return an observable with a user-facing error message.
-    return throwError(
-      'Something bad happened; please try again later.');
   }
 }

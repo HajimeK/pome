@@ -6,7 +6,7 @@
 # docker ps
 FROM  node:latest as build
 WORKDIR /usr/local/app
-COPY ./angular /usr/local/app/
+COPY ./portfolio /usr/local/app/
 RUN npm install
 RUN npm run build
 

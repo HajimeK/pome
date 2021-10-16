@@ -1,93 +1,100 @@
 {
     "experiences": [
         {
-            "name": "Fleet IoT",
-            "tab": [
-                "IoT"
-            ],
-            "description": "Fleet solution packaging project targeting the Japanese market. Install in-vehicle devices and collect data from platforms. From on-site data collection, provided the scoring function of the driver's behavior data using ML methods (4 months)",
-            "URL": "NA"
-        },
-        {
             "name": "AutoML with Azure ML",
-            "tab": [
+            "tag": [
                 "AIML",
                 "Azure"
+            ],
+            "skill": [
+                "Python", "Jupyter", "Pandas", "SKLearn"
             ],
             "description": "build and optimize an Azure ML pipeline using the Python SDK and a provided Scikit-learn model. This model is then compared to an Azure AutoML run.",
             "URL": "https://github.com/HajimeK/AzureML_Optimizing_a_Pipeline"
         },
         {
             "name": "Azure ML with real data",
-            "tab": [
+            "tag": [
                 "AIML"
+            ],
+            "skill": [
+                "Python", "Jupyter", "Pandas", "SKLearn"
             ],
             "description": "Using an traditional census data in Machine Learning studies, here I have derived prediction models to find potential donors. If the income is expected larger than 50K, we find the person as potential donors and put emphasis on the activity to ask for donations.",
             "URL": "https://github.com/HajimeK/nd00333-capstone"
         },
         {
             "name": "Person Detection with Intel OpenVINO",
-            "tab": [
+            "tag": [
                 "AIML"
+            ],
+            "skill": [
+                "Python", "Jupyter", "Pandas", "OpenVINO"
             ],
             "description": "Using SSD, Single Shot Multibox Detector, to detect people in real-time streaming video. Can operate both with Intel CPU embedded GPU and Intel USB VPU",
             "URL": "https://github.com/HajimeK/nd131-openvino-fundamentals-project-starter/blob/master/WRITEUP.md"
         },
         {
             "name": "Fleet IoT",
-            "tab": [
+            "tag": [
                 "IOT",
                 "AIML"
+            ],
+            "skill": [
+                "Python", "Jupyter", "Pandas", "SKLearn"
             ],
             "description": "Fleet solution packaging project targeting the Japanese market. Install in-vehicle devices and collect data from platforms. From on-site data collection, provided the scoring function of the driver's behavior data using ML methods (4 months)",
             "URL": "NA"
         },
         {
             "name": "AIoT, Anormaly Detection",
-            "tab": [
+            "tag": [
                 "IoT",
                 "AIML"
+            ],
+            "skill": [
+                "Python", "Jupyter", "Pandas", "SKLearn", "XGBoost"
             ],
             "description": "Reducing the failure rate of trucks is critical in logictics business. A machine lerning model for predictive analytics.",
             "URL": "https://github.com/HajimeK/machine-learning/blob/master/projects/capstone/report/capstone.md"        },
         {
             "name": "AIoT Streaming Analytics",
-            "tab": [
+            "tag": [
                 "IoT",
                 "AIML"
+            ],
+            "skill": [
+                "Python", "Apama", "Cumulocity"
             ],
             "description": "Workshop to empower a partner ready for AIoT(AI+IoT) streaming analytics",
             "URL": "NA"
         },
         {
             "name": "MLOps with Azure ML",
-            "tab": [
+            "tag": [
                 "Azure",
                 "AIML"
+            ],
+            "skill": [
+                "Python", "Jupyter", "Pandas", "SKLearn"
             ],
             "description": "Deploy trained models to an end point what is consumable with REST API calls",
             "URL": "https://github.com/HajimeK/nd00333_AZMLND_C2/tree/master/starter_files"
         },
         {
-            "name": "Azure ML with real data",
-            "tab": [
-                "Azure",
-                "AIML"
-            ],
-            "description": "Using an traditional census data in Machine Learning studies, here I have derived prediction models to find potential donors. If the income is expected larger than 50K, we find the person as potential donors and put emphasis on the activity to ask for donations.",
-            "URL": "https://github.com/HajimeK/nd00333-capstone"
-        },
-        {
             "name": "Azure Performance",
-            "tab": [
+            "tag": [
                 "Azure"
+            ],
+            "skill": [
+                "Python"
             ],
             "description": "Investigate Azure perfomance using Application Insights, Logs and etc, and autoscale when needed",
             "URL": "https://github.com/HajimeK/azure-performance-and-auto-scaling"
         },
         {
             "name": "Azure Performance VMMS autoscaling",
-            "tab": [
+            "tag": [
                 "Azure"
             ],
             "description": "Setup an auto-scaling for a VMSS",
@@ -95,64 +102,88 @@
         },
         {
             "name": "Azure Performance with Azure Kubernetes Cluster and Runbook",
-            "tab": [
+            "tag": [
                 "Azure"
+            ],
+            "skill": [
+                "Python", "Kubernetes", "Docker", "Flask"
             ],
             "description": "Create alerts to trigger auto-scaling on an AKS cluster and trigger a RunBook to execute",
             "URL": "https://github.com/HajimeK/azure-performance-and-auto-scaling/blob/master/subprojects/kubernetes-cluster/README.md"
         },
         {
             "name": "Migrating to Azure",
-            "tab": [
+            "tag": [
                 "Azure"
             ],
+            "skill": [
+                "Python", "Serverless"
+            ],
             "description": "Making application to work with cloud managed services, like Azure Functions, service bus queue messaging",
-            "URL": "https://github.com/HajimeK/nd081-c3-Migrating-Non-Native-Cloud-Applications-project-starter" 
+            "URL": "https://github.com/HajimeK/nd081-c3-Migrating-Non-Native-Cloud-Applications-project-starter"
         },
         {
             "name": "Azure Web App with REST & Cosmos DB backend",
-            "tab": [
+            "tag": [
                 "Azure"
+            ],
+            "skill": [
+                "Python", "Pymongo", "MongoDB"
             ],
             "description": "Azure Web App with REAT API withAzure Functions and Mongo DB",
             "URL": "https://github.com/HajimeK/nd081-c2-Building-and-deploying-cloud-native-applications-from-scratch-project-starter"
         },
         {
             "name": "CMS app on Azure with AD credential",
-            "tab": [
+            "tag": [
                 "Azure"
+            ],
+            "skill": [
+                "Python", "Flask"
             ],
             "description": "CMS app with OAuth2 with Sign in with Microsoft using the msal library, along with app logging.",
             "URL": "https://github.com/HajimeK/nd081-c1-provisioning-microsoft-azure-vms-project-starter/blob/master/WRITEUP.md"
         },
         {
             "name": "Blockchain applied Supply Chaing",
-            "tab": [
+            "tag": [
                 "Blockchain"
             ],
-            "description": "Ethereum DApp that demonstrates a Supply Chain flow between a Seller and Buyer.",    
-            "URL": "https://github.com/HajimeK/BlockchainDevND/tree/master/projects/project_6_Supply_Chain"      
+            "skill": [
+                "Ethereum", "Solidity"
+            ],
+            "description": "Ethereum DApp that demonstrates a Supply Chain flow between a Seller and Buyer.",
+            "URL": "https://github.com/HajimeK/BlockchainDevND/tree/master/projects/project_6_Supply_Chain"
         },
         {
             "name": "Blockchian applied to Flight Insureance",
-            "tab": [
+            "tag": [
                 "Blockchain"
             ],
+            "skill": [
+                "Ethereum", "Solidity", "React.js"
+            ],
             "description": "Decentralized App withvoting algorithm for flight insurance among passengers and flight companies",
-            "URL": "https://github.com/HajimeK/BlockchainDevND/tree/master/projects/project_FlightSurety"        
+            "URL": "https://github.com/HajimeK/BlockchainDevND/tree/master/projects/project_FlightSurety"
         },
         {
             "name": "Blockchain applied to NFT",
-            "tab": [
+            "tag": [
                 "Blockchain"
+            ],
+            "skill": [
+                "Ethereum", "Solidity", "NFT"
             ],
             "description": "Smart Contract app to exchange items in OpenSea market place using NFT",
             "URL": "https://github.com/HajimeK/BlockchainDevND/tree/master/projects/project_Capstone"
         },
         {
             "name": "Consumer Project IoT",
-            "tab": [
+            "tag": [
                 "IoT"
+            ],
+            "skill": [
+                "Python", "Jupyter", "Pandas"
             ],
             "description": "As an engineer in a PoC to make customer product ready for IoT. Technology lead in defining subsequent commercialization requirements (1.5 year)",
             "URL": "NA"
