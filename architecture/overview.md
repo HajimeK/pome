@@ -1,46 +1,73 @@
 # My engineering web site overview
 
 - [My engineering web site overview](#my-engineering-web-site-overview)
-  - [Page Image](#page-image)
-  - [Top page](#top-page)
-  - [Project page](#project-page)
-  - [Profile page](#profile-page)
-    - [Skills](#skills)
-    - [Experiences](#experiences)
-  - [Common parts](#common-parts)
-    - [Contact information](#contact-information)
-    - [SNS](#sns)
-  - [Technologies](#technologies)
-    - [Front-end to implement with Angular](#front-end-to-implement-with-angular)
-      - [Deploy to GitHub Page](#deploy-to-github-page)
-    - [Back-end to implement with SQL in Azure](#back-end-to-implement-with-sql-in-azure)
-      - [SKills](#skills-1)
-        - [Query](#query)
-        - [Tables](#tables)
-          - [Skill](#skill)
-          - [Project](#project)
-          - [Skill_Project](#skill_project)
-      - [Experiences](#experiences-1)
-        - [Query](#query-1)
-        - [Tables](#tables-1)
-          - [Experience](#experience)
+  - [Page Design](#page-design)
+    - [Pages](#pages)
+      - [Top page](#top-page)
+      - [Profile Page](#profile-page)
+      - [Experiences page](#experiences-page)
+      - [Contact](#contact)
+    - [Implementation with Angular](#implementation-with-angular)
+      - [Comopnents](#comopnents)
+        - [top](#top)
+        - [profile](#profile)
+        - [experiences-head](#experiences-head)
+        - [experiences-container](#experiences-container)
+        - [experiences-content](#experiences-content)
+        - [experience-card](#experience-card)
+        - [contact](#contact-1)
+      - [Services](#services)
+        - [experiences-api](#experiences-api)
+    - [Middleware with express.js](#middleware-with-expressjs)
+      - [Models](#models)
+        - [Experience](#experience)
+          - [Model](#model)
+        - [API](#api)
+          - [GET /api/experience/list?tag=<tagid>](#get-apiexperiencelisttagtagid)
+          - [GET /api/experience/:idx](#get-apiexperienceidx)
+          - [POST /api/experience (token requied)](#post-apiexperience-token-requied)
+          - [PUT /api/experience (token requied)](#put-apiexperience-token-requied)
+          - [DELETE /experience/:id (token requied)](#delete-experienceid-token-requied)
+      - [Tag](#tag)
+        - [Model](#model-1)
+        - [API](#api-1)
+          - [GET /api/tag/list](#get-apitaglist)
+          - [GET /api/tag?name="tag name"](#get-apitagnametag-name)
+          - [POST /api/tag?name="tag name" (token required)](#post-apitagnametag-name-token-required)
+          - [DELETE /api/tag?name="tag name" (token required)](#delete-apitagnametag-name-token-required)
+      - [Application User](#application-user)
+        - [Model](#model-2)
+        - [API](#api-2)
+          - [/api/user/login](#apiuserlogin)
+          - [GET /api/user/list [token required]](#get-apiuserlist-token-required)
+          - [GET /api/user/:id](#get-apiuserid)
+          - [POST /api/user [token required]](#post-apiuser-token-required)
+          - [DELETE /api/user/:id [token required]](#delete-apiuserid-token-required)
+    - [Database](#database)
+      - [Table](#table)
+        - [Experience](#experience-1)
+        - [Tag](#tag-1)
+        - [relexptag](#relexptag)
+        - [appuser](#appuser)
+        - [inquiry (TBD)](#inquiry-tbd)
+      - [Queries](#queries)
 
-## Page Image
+## Page Design
 
-![Overview](overview.svg)
+![Site Design](sitedesign.png)
 
-## Top page
+### Pages
+#### Top page
 
 Simply explains what I am and what I can.
 
-## Project page
+
+#### Profile Page
+
+#### Experiences page
 
 Display the demo applications in tiles.
 By clicking each tiles, it jumps to the applications to explain my work.
-
-## Profile page
-
-### Skills
 
 Skills tiled with material UI cards.
 Jumps to the site of the implementation using the skill.
@@ -54,145 +81,394 @@ Jumps to the site of the implementation using the skill.
 |Share | For visitors to share the skill card in Linkdin |
 |Exlore | Link to the Web Site |
 
-### Experiences
+#### Contact
 
-## Common parts
+### Implementation with Angular
 
-### Contact information
 
-Implemented in chat bots to respond to the readers' questions.
-Collect requesters contact information
 
-### SNS
-
-Linkd-in
-GitHub
-
-## Technologies
-
-### Front-end to implement with Angular
-
-```
+```sh
 ng new pome
-ng generate component title
-
-ng generate component profile_skills
-ng generate component profile_experiences
-ng generate component profile_experiences_aiml
-ng generate component profile_experiences_azure
-ng generate component profile_experiences_iot
-ng generate component profile_experiences_blockchain
+ng generate component top
+ng generate component profile
+ng generate component experiences-head
+ng generate component experiences-container
+ng generate component experiences-content
+ng generate component experience-card
 ng generate component contact
 
-ng generate component experience_card
-ng generate component skill_card
-
+ng generate service experiences-api
 ```
 
-#### Deploy to GitHub Page
+#### Comopnents
 
+##### top
+##### profile
+##### experiences-head
+##### experiences-container
+##### experiences-content
+##### experience-card
+##### contact
+
+#### Services
+
+##### experiences-api
+
+### Middleware with express.js
+
+#### Models
+
+##### Experience
+
+###### Model
+
+```js
+exprt type Experience = {
+  id?: numer, // -1 if not assigned in DB
+  title: string,
+  description: string,
+  url?: string
+};
 ```
-ng build --prod  --base-href="https://hajimek.github.io/pome/"
-ngh --dir="dist/pome"
+```js
+list(idxTag?: numer): Experience[]
+get(idx: number): Experience
+create(experience: Experience): Experience {}
+update(experience: Experience): Experience {}
+delete(experience: Experience): Experience {}
 ```
+##### API
 
-### Back-end to implement with SQL in Azure
+###### GET /api/experience/list?tag=<tagid>
 
-#### SKills
+| code | result | When |
+|-|-|-|
+| 200 | Success | Found entry and responded |
 
-##### Query
+Return list of experiences.
+The tagid is optional to get the category tag of the experience.
 
-```
-SELECT Skill.id, Skill.item, Skill.level, Skill.description, Project.name, Project.description, Project.url
-FROM Skill
-LEFT JOIN Skill_Project ON Skill.id = Skill_Project.skill_id
-LEFT JOIN Project ON Skill_Project.project_id = Project.id
-```
+The following is returned in the response.
 
-##### Tables
-
-###### Skill
-
-- id
-- item
-- level
-
-```
-CREATE TABLE IF NOT EXISTS Skill (
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  item VARCHAR(20) NOT NULL,
-  description TEXT,
-  level VARCHAR(10) NOT NULL,
-)
-```
-
-###### Project
-
-- id
-- name
-- url
-
-```
-CREATE TABLE IF NOT EXISTS Project (
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  name VARCHAR(256) NOT NULL,
-  description TEXT NOT NULL,
-  url TEXT NOT NULL,
-)
-```
-
-###### Skill_Project
-
-- skill_id
-- project_id
-
-```
-CREATE TABLE Skill_Project (
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  CONSTRAINT fk_skill_id
-    FOREIGN KEY (skill_id) 
-    REFERENCES Skill (id)
-    ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT fk_project_id
-    FOREIGN KEY (project_id) 
-    REFERENCES Project (id)
-    ON DELETE RESTRICT ON UPDATE RESTRICT,
-)
+```js
+[
+  {
+    id: number
+    title: string,
+    description: string,
+    url?: string
+  },
+  ...
+]
 ```
 
-#### Experiences
+###### GET /api/experience/:idx
 
-##### Query
+Return an experience by index.
+
+| code | result | When |
+|-|-|-|
+| 200 | Success | Found entry and responded |
+| 404 | Not Found | The entry with the id is not found |
+
+The following is returned in the response.
+```js
+{
+  id: numer,
+  title: string,
+  description: string,
+  url?: string
+};
+```
+
+###### POST /api/experience (token requied)
+
+| code | result | When |
+|-|-|-|
+| 201 | Created | Successfully created |
+| 400 | Bad request | token not acceptale |
+| 406 | Not acceptale | failed in the request with bad format or data |
+| 409 | Conflict | Already exists with the same title |
+
+Create and experience.
+
+Create an experience with the following formant.
+If the title is duplicated, return an error resopnse (409).
+
+- request body
+```js
+{
+  id: number,
+  title: string,
+  description: string,
+  url?: string
+};
+```
+
+When correctly registered return code (201) returned with the created entry with an assigned id.
+- response body
+```js
+{
+  id: number,
+  title: string,
+  description: string,
+  url?: string
+};
+```
+
+###### PUT /api/experience (token requied)
+
+| code | result | When |
+|-|-|-|
+| 200 | Created | Successfully update |
+| 400 | Bad request | token not acceptable |
+| 404 | Not Found | the experience entry is not found in DB |
+| 406 | Not acceptale | failed in the request with bad format or data |
+
+- request
+```js
+{
+  id: number,
+  title: string,
+  description: string,
+  url?: string
+};
+```
+
+- response
+```js
+{
+  id: number,
+  title: string,
+  description: string,
+  url?: string
+};
+```
+
+###### DELETE /experience/:id (token requied)
+
+| code | result | When |
+|-|-|-|
+| 200 | OK | Successfully deleted |
+| 400 | Bad request | token not accepted |
+| 404 | Not Found | When there is no entry with the id |
+
+```js
+{
+  id: number,
+  title: string,
+  description: string,
+  url?: string
+};
+```
+
+
+#### Tag
+
+##### Model
+
+```js
+exprt type Tag = {
+  id?: numer, // -1 if not assigned in DB
+  tag: string
+};
+```
+
+```js
+list(): Tag[]
+get(idx: number): Tag
+create(tag: Tag): Tag {}
+delete(tag: Tag): Tag {}
+```
+##### API
+
+###### GET /api/tag/list
+
+| code | result | When |
+|-|-|-|
+| 200 | Success | Found entry and responded |
+
+###### GET /api/tag?name="tag name"
+
+| code | result | When |
+|-|-|-|
+| 200 | Success | Found entry and responded |
+| 404 | Not Found | The entry with the tag name is not found |
+
+###### POST /api/tag?name="tag name" (token required)
+
+
+| code | result | When |
+|-|-|-|
+| 201 | Created | Successfully created |
+| 400 | Bad request | token not acceptale or no name specified |
+| 409 | Conflict | Already exists with the same title |
+
+###### DELETE /api/tag?name="tag name" (token required)
+
+
+| code | result | When |
+|-|-|-|
+| 200 | OK | Successfully deleted |
+| 400 | Bad request | token not accepted |
+| 404 | Not Found | When there is no entry with the tag name |
+
+
+#### Application User
+
+##### Model
+
+```js
+exprt type Tag = {
+  id?: numer, // -1 if not assigned in DB
+  user string,
+  email string,
+  passwd string,
+};
+```
+
+```js
+login()
+list(): Tag[]
+get(idx: number): Tag
+create(tag: Tag): Tag {}
+delete(tag: Tag): Tag {}
+```
+##### API
+
+###### /api/user/login
+
+
+For registered user, you can login by sending below in your request body.
 
 ```
-SELECT Experience.name, Experience.from, Experience.to, Experience.role, Project.name, Project.url
-FROM Experience, Project
-WHERE Experience.project_id = Project.id
+{
+    email: string;
+    passwd: string;
+}
 ```
 
-##### Tables
-
-###### Experience
-
-- id
-- name
-- from
-- to
-- role
-- statement
-- (fk)project
+In the response body, you get below. Extract the token from below and set as *Authorization: Bearer <token>*, where you find **[token required]**.
 
 ```
-CREATE TABLE IF NOTE EXISTS Experience (
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  name VARCHAR(128) NOT NULL,
-  from DATE,
-  to DATE,
-  role VARCHAR(64)
-  statement TEXT
-  CONSTRAINT fk_project_id
-    FOREIGN KEY (project_id) 
-    REFERENCES Project (id)
-    ON DELETE RESTRICT ON UPDATE RESTRICT
-)
+{
+    email: string;
+    token: string;
+}
 ```
+
+###### GET /api/user/list [token required]
+
+| code | result | When |
+|-|-|-|
+| 200 | Success | Found entry and responded |
+
+Get a list of users.
+
+###### GET /api/user/:id
+
+| code | result | When |
+|-|-|-|
+| 200 | Success | Found entry and responded |
+| 404 | Not Found | The entry with the user id is not found |
+
+###### POST /api/user [token required]
+
+
+| code | result | When |
+|-|-|-|
+| 201 | Created | Successfully created |
+| 400 | Bad request | token not acceptale or no name specified |
+| 409 | Conflict | Already exists with the same user email |
+
+
+Set the following in the request body.
+```
+{
+    id: number,
+    user: string,
+    email: string,
+    passwd: string
+}
+```
+
+###### DELETE /api/user/:id [token required]
+
+| code | result | When |
+|-|-|-|
+| 200 | OK | Successfully deleted |
+| 400 | Bad request | token not accepted |
+| 404 | Not Found | When there is no entry with the user id |
+
+### Database
+
+![](tabledesign.png)
+
+#### Table
+##### Experience
+
+
+```sql
+CREATE TABLE IF NOT EXISTS experience (
+  id SERIAL,
+  title VARCHAR NOT NULL,
+  note TEXT,
+  urle VARCHAR,
+  PRIMARY KEY (id)
+);
+```
+
+##### Tag
+
+
+```sql
+CREATE TABLE IF NOT EXISTS tag (
+  id SERIAL,
+  tag VARCHAR(8) NOT NULL,
+  PRIMARY KEY (id)
+);
+```
+
+##### relexptag
+
+```sql
+CREATE TABLE IF NOT EXISTS relexptag (
+    id SERIAL,
+    experience INT,
+        FOREIGN KEY (experience)
+        REFERENCES experience (id),
+    tag INT,
+        FOREIGN KEY (tag)
+        REFERENCES tag (id),
+    PRIMARY KEY (id)
+);
+```
+
+##### appuser
+
+The email and passwd should be hashed.
+
+```sql
+CREATE TABLE IF NOT EXISTS lvl (
+  id SERIAL,
+  user VARCHAR,
+  email VARCHAR,
+  passwd VARCHAR,
+  PRIMARY KEY (id)
+);
+```
+
+
+##### inquiry (TBD)
+
+```sql
+CREATE TABLE IF NOT EXISTS inquiry (
+  id SERIAL,
+  sender VARCHAR,
+  title VARCHAR,
+  note TEXT,
+  PRIMARY KEY (id)
+);
+```
+
+#### Queries
