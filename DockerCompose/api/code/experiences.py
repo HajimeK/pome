@@ -17,23 +17,24 @@ api = Flask(__name__)
 
 @api.route("/")
 def index():
-    return flask.jsonify([e for e in experiences.find()])
+    return flask.jsonify([e for e in experiences.find({}, {'_id': False})])
 
 @api.route("/aiml")
 def aiml():
-    return flask.jsonify([e for e in experiences.find({"tags" : { "$in" : ["AIML"] }})])
+    print([e for e in experiences.find({"tag" : { "$in" : ["AIML"] }}, {'_id': False})], flush = True)
+    return flask.jsonify([e for e in experiences.find({"tag" : { "$in" : ["AIML"] }}, {'_id': False})])
 
 @api.route("/iot")
 def iot():
-    return flask.jsonify([e for e in experiences.find({"tags" : { "$in" : ["IoT"] }})])
+    return flask.jsonify([e for e in experiences.find({"tag" : { "$in" : ["IoT"] }}, {'_id': False})])
 
 @api.route("/azure")
 def azure():
-    return flask.jsonify([e for e in experiences.find({"tags" : { "$in" : ["Azure"] }})])
+    return flask.jsonify([e for e in experiences.find({"tag" : { "$in" : ["Azure"] }}, {'_id': False})])
 
 @api.route("/quant")
 def quant():
-    return flask.jsonify([e for e in experiences.find({"tags" : { "$in" : ["Quant"] }})])
+    return flask.jsonify([e for e in experiences.find({"tag" : { "$in" : ["Quant"] }}, {'_id': False})])
 
 if __name__ == "__main__":
     api.run(host="0.0.0.0", port=5000, debug=True)
