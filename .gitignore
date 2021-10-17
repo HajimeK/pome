@@ -46,3 +46,6 @@ testem.log
 Thumbs.db
 samples/test.http
 Kubernetes/db/**
+
+DockerCompose/api/API/node_modules/**
+DockerCompose/api/API/.env

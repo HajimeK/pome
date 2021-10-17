@@ -22,7 +22,8 @@
       - [Models](#models)
         - [Experience](#experience)
           - [Model](#model)
-        - [API](#api)
+          - [Funcions](#funcions)
+        - [Endpoint API](#endpoint-api)
           - [GET /api/experience/list?tag=<tagid>](#get-apiexperiencelisttagtagid)
           - [GET /api/experience/:idx](#get-apiexperienceidx)
           - [POST /api/experience (token requied)](#post-apiexperience-token-requied)
@@ -30,14 +31,15 @@
           - [DELETE /experience/:id (token requied)](#delete-experienceid-token-requied)
       - [Tag](#tag)
         - [Model](#model-1)
-        - [API](#api-1)
+        - [Model Functions](#model-functions)
+        - [Endpoint API](#endpoint-api-1)
           - [GET /api/tag/list](#get-apitaglist)
           - [GET /api/tag?name="tag name"](#get-apitagnametag-name)
           - [POST /api/tag?name="tag name" (token required)](#post-apitagnametag-name-token-required)
           - [DELETE /api/tag?name="tag name" (token required)](#delete-apitagnametag-name-token-required)
       - [Application User](#application-user)
         - [Model](#model-2)
-        - [API](#api-2)
+        - [Endpoint API](#endpoint-api-2)
           - [/api/user/login](#apiuserlogin)
           - [GET /api/user/list [token required]](#get-apiuserlist-token-required)
           - [GET /api/user/:id](#get-apiuserid)
@@ -130,6 +132,10 @@ exprt type Experience = {
   url?: string
 };
 ```
+
+###### Funcions
+The functions created to exchange the model.
+
 ```js
 list(idxTag?: numer): Experience[]
 get(idx: number): Experience
@@ -137,7 +143,22 @@ create(experience: Experience): Experience {}
 update(experience: Experience): Experience {}
 delete(experience: Experience): Experience {}
 ```
-##### API
+
+- list(tagid?: numer): Experience[]
+  - list all the experiences
+  - list all the experiences tagged with the
+
+- get(idx: number): Experience
+
+- create(experience: Experience): Experience {}
+
+- update(experience: Experience): Experience {}
+
+- delete(experience: Experience): Experience {}
+
+
+
+##### Endpoint API
 
 ###### GET /api/experience/list?tag=<tagid>
 
@@ -274,13 +295,16 @@ exprt type Tag = {
 };
 ```
 
+##### Model Functions
 ```js
 list(): Tag[]
 get(idx: number): Tag
 create(tag: Tag): Tag {}
 delete(tag: Tag): Tag {}
 ```
-##### API
+
+
+##### Endpoint API
 
 ###### GET /api/tag/list
 
@@ -334,7 +358,7 @@ get(idx: number): Tag
 create(tag: Tag): Tag {}
 delete(tag: Tag): Tag {}
 ```
-##### API
+##### Endpoint API
 
 ###### /api/user/login
 
