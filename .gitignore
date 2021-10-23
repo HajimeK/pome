@@ -49,3 +49,4 @@ Kubernetes/db/**
 
 DockerCompose/api/API/node_modules/**
 DockerCompose/api/API/.env
+DockerCompose/.env

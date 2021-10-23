@@ -12,7 +12,7 @@
     "db-up": "db-migrate --env test up",
     "db-down": "db-migrate --env test down",
     "dev": "db-migrate --env test up && nodemon src/server.ts",
-    "run": "node build/server.js",
+    "run": "node dist/server.js",
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess 'node ./dist/server.js'"
   },
   "author": "Hajime Kawata",
@@ -26,6 +26,7 @@
     "db-migrate-pg": "^1.2.2",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-promise-router": "^4.1.0",
     "express-rate-limit": "^5.3.0",
     "helmet": "^4.6.0",
     "http-errors": "^1.8.0",

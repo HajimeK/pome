@@ -1,10 +1,16 @@
-FROM python:3.9-slim
+FROM node:14
 
-WORKDIR /code
-COPY ./code/* /code/
-ENV FLASK_APP=experiences.py
-ENV FLASK_RUN_HOST=0.0.0.0
-EXPOSE 5000
+# md & cd workdir
+WORKDIR /usr/app
 
-RUN pip install -r requirements.txt
-CMD ["flask", "run"]
+# Copy application dependencies
+COPY api/package*.json ./
+COPY ./api/src ./
+
+RUN npm install
+# For production
+# RUN npm install --only=production
+
+
+EXPOSE 3000
+CMD [ "npm", "watch" ]

@@ -3,8 +3,6 @@ import { ModelTag, Tag } from '../../models/tag';
 describe("Tag Model", () => {
 
     let tag: Tag;
-
-    // create product categories
     const tags: Tag[] = [
         {
             id: -1, // -1 if not assigned in DB

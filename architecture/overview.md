@@ -37,9 +37,9 @@
         - [Model Functions](#model-functions)
         - [Endpoint API](#endpoint-api-1)
           - [GET /api/tag/list](#get-apitaglist)
-          - [GET /api/tag?name="tag name"](#get-apitagnametag-name)
-          - [POST /api/tag?name="tag name" (token required)](#post-apitagnametag-name-token-required)
-          - [DELETE /api/tag?name="tag name" (token required)](#delete-apitagnametag-name-token-required)
+          - [GET /api/tag/"tag name"](#get-apitagtag-name)
+          - [POST /api/tag/"tag name" (token required)](#post-apitagtag-name-token-required)
+          - [DELETE /api/tag/"tag name" (token required)](#delete-apitagtag-name-token-required)
         - [Tables](#tables)
         - [relexptag](#relexptag)
       - [Application User](#application-user)
@@ -333,14 +333,14 @@ delete(tag: string): Tag {}
 |-|-|-|
 | 200 | Success | Found entry and responded |
 
-###### GET /api/tag?name="tag name"
+###### GET /api/tag/"tag name"
 
 | code | result | When |
 |-|-|-|
 | 200 | Success | Found entry and responded |
 | 404 | Not Found | The entry with the tag name is not found |
 
-###### POST /api/tag?name="tag name" (token required)
+###### POST /api/tag/"tag name" (token required)
 
 
 | code | result | When |
@@ -349,7 +349,7 @@ delete(tag: string): Tag {}
 | 400 | Bad request | token not acceptale or no name specified |
 | 409 | Conflict | Already exists with the same title |
 
-###### DELETE /api/tag?name="tag name" (token required)
+###### DELETE /api/tag/"tag name" (token required)
 
 
 | code | result | When |

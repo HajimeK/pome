@@ -14,8 +14,6 @@ user.use(
 )
 user.use(express.json());
 
-const model = new ModelUser();
-
 export interface loginCredential {
     email: string;
     password: string;
@@ -26,9 +24,9 @@ export interface loginToken {
     token: string;
 }
 
-user.get('/index', verifyAuthToken, async (request, response) => {
+user.get('/list', verifyAuthToken, async (request, response) => {
     try {
-        const users = await model.index();
+        const users = await ModelUser.list();
 
         return response.status(200).send(users);
     } catch(error) {
@@ -36,10 +34,10 @@ user.get('/index', verifyAuthToken, async (request, response) => {
     }
 });
 
-user.get('/show/:id', verifyAuthToken, async (request, response) => {
+user.get('/:id', verifyAuthToken, async (request, response) => {
     const id = parseInt(request.params.id);
     try {
-        const p = await model.show(id);
+        const p = await ModelUser.get(id);
 
         return response.status(200).send(p);
     } catch(error) {
@@ -47,21 +45,32 @@ user.get('/show/:id', verifyAuthToken, async (request, response) => {
     }
 });
 
-user.post('/create', verifyAuthToken, async (request, response) => {
+user.post('/', verifyAuthToken, async (request, response) => {
     const u = request.body as User;
     try {
-        const u_created = await model.create(u);
+        const u_created = await ModelUser.create(u);
 
         return response.status(200).send(u_created);
     } catch(error) {
-        return response.status(400).send(`Could not create a user ${u.firstname} ${u.lastname}. Error: ${(error as Error).message}`);
+        return response.status(400).send(`Could not create a user ${u.name} ${u.email}. Error: ${(error as Error).message}`);
+    }
+});
+
+user.put('/', verifyAuthToken, async (request, response) => {
+    const u = request.body as User;
+    try {
+        const u_created = await ModelUser.update(u);
+
+        return response.status(200).send(u_created);
+    } catch(error) {
+        return response.status(400).send(`Could not create a user ${u.name} ${u.email}. Error: ${(error as Error).message}`);
     }
 });
 
 user.delete('/:id', verifyAuthToken, async (request, response) => {
     const id = parseInt(request.params.id);
     try {
-        const user = await model.delete(id);
+        const user = await ModelUser.delete(id);
 
         return response.status(200).send(user);
     } catch(error) {
@@ -75,7 +84,7 @@ user.post('/login', (request, response) => {
         return response.status(400).send('Missing email/password in request body');
     }
 
-    model.authenticate(credential.email, credential.password)
+    ModelUser.authenticate(credential.email, credential.password)
     .then(user => {
         if (user && user.id) {
             const { TOKEN_SECRET } = process.env;
