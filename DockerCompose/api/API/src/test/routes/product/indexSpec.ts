@@ -3,7 +3,7 @@ import app from '../../../server';
 import { ModelProductCategory, ProductCategory } from '../../../models/productCategory';
 import { ModelUser, User } from '../../../models/user';
 import { loginToken } from '../../../routes/user';
-import { Product } from '../../../models/product';
+import { Product } from '../../../models/tag';
 
 describe('Test Suite for /product', () => {
 

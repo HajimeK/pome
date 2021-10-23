@@ -18,9 +18,11 @@
         - [contact](#contact-1)
       - [Services](#services)
         - [experiences-api](#experiences-api)
-    - [Middleware with express.js](#middleware-with-expressjs)
-      - [Models](#models)
-        - [Experience](#experience)
+    - [Middleware with express.js and Backend DB](#middleware-with-expressjs-and-backend-db)
+      - [Architecture](#architecture)
+        - [API](#api)
+        - [Database](#database)
+      - [Experience](#experience)
           - [Model](#model)
           - [Funcions](#funcions)
         - [Endpoint API](#endpoint-api)
@@ -29,6 +31,7 @@
           - [POST /api/experience (token requied)](#post-apiexperience-token-requied)
           - [PUT /api/experience (token requied)](#put-apiexperience-token-requied)
           - [DELETE /experience/:id (token requied)](#delete-experienceid-token-requied)
+        - [Table](#table)
       - [Tag](#tag)
         - [Model](#model-1)
         - [Model Functions](#model-functions)
@@ -37,6 +40,8 @@
           - [GET /api/tag?name="tag name"](#get-apitagnametag-name)
           - [POST /api/tag?name="tag name" (token required)](#post-apitagnametag-name-token-required)
           - [DELETE /api/tag?name="tag name" (token required)](#delete-apitagnametag-name-token-required)
+        - [Tables](#tables)
+        - [relexptag](#relexptag)
       - [Application User](#application-user)
         - [Model](#model-2)
         - [Endpoint API](#endpoint-api-2)
@@ -45,13 +50,11 @@
           - [GET /api/user/:id](#get-apiuserid)
           - [POST /api/user [token required]](#post-apiuser-token-required)
           - [DELETE /api/user/:id [token required]](#delete-apiuserid-token-required)
-    - [Database](#database)
-      - [Table](#table)
-        - [Experience](#experience-1)
-        - [Tag](#tag-1)
-        - [relexptag](#relexptag)
-        - [appuser](#appuser)
-        - [inquiry (TBD)](#inquiry-tbd)
+        - [Tables](#tables-1)
+      - [Inquiry](#inquiry)
+        - [Model](#model-3)
+        - [Endpoint API](#endpoint-api-3)
+        - [Tables](#tables-2)
       - [Queries](#queries)
 
 ## Page Design
@@ -116,17 +119,22 @@ ng generate service experiences-api
 
 ##### experiences-api
 
-### Middleware with express.js
+### Middleware with express.js and Backend DB
 
-#### Models
+#### Architecture
 
-##### Experience
+##### API
+##### Database
+
+![](tabledesign.png)
+
+#### Experience
 
 ###### Model
 
 ```js
-exprt type Experience = {
-  id?: numer, // -1 if not assigned in DB
+export type Experience = {
+  id?: number, // -1 if not assigned in DB
   title: string,
   description: string,
   url?: string
@@ -137,14 +145,14 @@ exprt type Experience = {
 The functions created to exchange the model.
 
 ```js
-list(idxTag?: numer): Experience[]
+list(idxTag?: number): Experience[]
 get(idx: number): Experience
 create(experience: Experience): Experience {}
 update(experience: Experience): Experience {}
-delete(experience: Experience): Experience {}
+delete(id: number): Experience {}
 ```
 
-- list(tagid?: numer): Experience[]
+- list(tagid?: number): Experience[]
   - list all the experiences
   - list all the experiences tagged with the
 
@@ -154,7 +162,7 @@ delete(experience: Experience): Experience {}
 
 - update(experience: Experience): Experience {}
 
-- delete(experience: Experience): Experience {}
+- delete(id: number): Experience {}
 
 
 
@@ -195,7 +203,7 @@ Return an experience by index.
 The following is returned in the response.
 ```js
 {
-  id: numer,
+  id: number,
   title: string,
   description: string,
   url?: string
@@ -207,7 +215,7 @@ The following is returned in the response.
 | code | result | When |
 |-|-|-|
 | 201 | Created | Successfully created |
-| 400 | Bad request | token not acceptale |
+| 401 | Unauthorized | token not acceptale |
 | 406 | Not acceptale | failed in the request with bad format or data |
 | 409 | Conflict | Already exists with the same title |
 
@@ -232,7 +240,7 @@ When correctly registered return code (201) returned with the created entry with
 {
   id: number,
   title: string,
-  description: string,
+  note: string,
   url?: string
 };
 ```
@@ -242,7 +250,7 @@ When correctly registered return code (201) returned with the created entry with
 | code | result | When |
 |-|-|-|
 | 200 | Created | Successfully update |
-| 400 | Bad request | token not acceptable |
+| 401 | Unauthorized | token not acceptable |
 | 404 | Not Found | the experience entry is not found in DB |
 | 406 | Not acceptale | failed in the request with bad format or data |
 
@@ -284,13 +292,26 @@ When correctly registered return code (201) returned with the created entry with
 ```
 
 
+##### Table
+
+```sql
+CREATE TABLE IF NOT EXISTS experience (
+  id SERIAL,
+  title VARCHAR NOT NULL,
+  note TEXT,
+  urle VARCHAR,
+  PRIMARY KEY (id)
+);
+```
+
+
 #### Tag
 
 ##### Model
 
 ```js
-exprt type Tag = {
-  id?: numer, // -1 if not assigned in DB
+export type Tag = {
+  id?: number, // -1 if not assigned in DB
   tag: string
 };
 ```
@@ -299,8 +320,8 @@ exprt type Tag = {
 ```js
 list(): Tag[]
 get(idx: number): Tag
-create(tag: Tag): Tag {}
-delete(tag: Tag): Tag {}
+create(tag: string): Tag {}
+delete(tag: string): Tag {}
 ```
 
 
@@ -337,26 +358,55 @@ delete(tag: Tag): Tag {}
 | 400 | Bad request | token not accepted |
 | 404 | Not Found | When there is no entry with the tag name |
 
+##### Tables
+
+
+```sql
+CREATE TABLE IF NOT EXISTS tag (
+  id SERIAL,
+  tag VARCHAR(8) NOT NULL,
+  PRIMARY KEY (id)
+);
+```
+
+##### relexptag
+
+```sql
+CREATE TABLE IF NOT EXISTS relexptag (
+    id SERIAL,
+    experience INT,
+        FOREIGN KEY (experience)
+        REFERENCES experience (id),
+    tag INT,
+        FOREIGN KEY (tag)
+        REFERENCES tag (id),
+    PRIMARY KEY (id)
+);
+```
+
 
 #### Application User
 
 ##### Model
 
 ```js
-exprt type Tag = {
-  id?: numer, // -1 if not assigned in DB
-  user string,
-  email string,
-  passwd string,
+export type User = {
+  id: number, // -1 if not assigned in DB
+  name: string,
+  email: string,
+  passwd: string,
 };
 ```
 
 ```js
 login()
-list(): Tag[]
-get(idx: number): Tag
-create(tag: Tag): Tag {}
-delete(tag: Tag): Tag {}
+async list(): Promise<User[]>\
+async get(id: number): Promise<User>
+async get(id: number): Promise<User>
+async create(u: User): Promise<User>
+async update(u: User): Promise<User>
+async delete(id: number): Promise<User>
+async authenticate(email: string, password: string): Promise<User | null>
 ```
 ##### Endpoint API
 
@@ -386,7 +436,7 @@ In the response body, you get below. Extract the token from below and set as *Au
 | code | result | When |
 |-|-|-|
 | 200 | Success | Found entry and responded |
-
+\
 Get a list of users.
 
 ###### GET /api/user/:id
@@ -402,7 +452,7 @@ Get a list of users.
 | code | result | When |
 |-|-|-|
 | 201 | Created | Successfully created |
-| 400 | Bad request | token not acceptale or no name specified |
+| 401 | Unauthorized | token not acceptale or no name specified |
 | 409 | Conflict | Already exists with the same user email |
 
 
@@ -421,54 +471,10 @@ Set the following in the request body.
 | code | result | When |
 |-|-|-|
 | 200 | OK | Successfully deleted |
-| 400 | Bad request | token not accepted |
+| 401 | Unauthorized | token not accepted |
 | 404 | Not Found | When there is no entry with the user id |
 
-### Database
-
-![](tabledesign.png)
-
-#### Table
-##### Experience
-
-
-```sql
-CREATE TABLE IF NOT EXISTS experience (
-  id SERIAL,
-  title VARCHAR NOT NULL,
-  note TEXT,
-  urle VARCHAR,
-  PRIMARY KEY (id)
-);
-```
-
-##### Tag
-
-
-```sql
-CREATE TABLE IF NOT EXISTS tag (
-  id SERIAL,
-  tag VARCHAR(8) NOT NULL,
-  PRIMARY KEY (id)
-);
-```
-
-##### relexptag
-
-```sql
-CREATE TABLE IF NOT EXISTS relexptag (
-    id SERIAL,
-    experience INT,
-        FOREIGN KEY (experience)
-        REFERENCES experience (id),
-    tag INT,
-        FOREIGN KEY (tag)
-        REFERENCES tag (id),
-    PRIMARY KEY (id)
-);
-```
-
-##### appuser
+##### Tables
 
 The email and passwd should be hashed.
 
@@ -482,8 +488,14 @@ CREATE TABLE IF NOT EXISTS lvl (
 );
 ```
 
+#### Inquiry
 
-##### inquiry (TBD)
+##### Model
+
+##### Endpoint API
+
+##### Tables
+
 
 ```sql
 CREATE TABLE IF NOT EXISTS inquiry (
@@ -494,5 +506,8 @@ CREATE TABLE IF NOT EXISTS inquiry (
   PRIMARY KEY (id)
 );
 ```
+
+
+
 
 #### Queries

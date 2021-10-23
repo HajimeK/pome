@@ -1,7 +1,7 @@
 import request from 'supertest';
 import app from '../../../server';
 import { ModelOrderStatus, OrderStatus } from '../../../models/orderStatus';
-import { ModelProduct, Product } from '../../../models/product';
+import { ModelProduct, Product } from '../../../models/tag';
 import { ModelProductCategory, ProductCategory } from '../../../models/productCategory';
 import { ModelUser, User } from '../../../models/user';
 import { OrderItem } from '../../../models/orderItem';

@@ -1,5 +1,5 @@
 import express from 'express';
-import { Product, ModelProduct } from '../../models/product';
+import { Product, ModelProduct } from '../../models/tag';
 import { verifyAuthToken } from '../util/auth';
 
 const product =  express.Router()

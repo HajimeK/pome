@@ -1,66 +1,69 @@
 import { ModelUser, User } from '../../models/user';
 
-const model = new ModelUser();
-
 describe("User Model", () => {
 
+    const users: User[] = [
+        {
+            id: -1, // -1 if not assigned in DB
+            name: "User",
+            email: "email@test.dev",
+            passwd: "test_password"
+        }
+    ]
     let user: User;
+
     it('create method should add a user', async () => {
-        user = await model.create({
-            id: 0,
-            email: 'email@something.com',
-            firstname: 'First',
-            lastname: 'Last',
-            userpassword: 'Pass'
-        });
-        expect(user.email).toEqual('email@something.com');
-        expect(user.firstname).toEqual('First');
-        expect(user.lastname).toEqual('Last');
+        user = await ModelUser.create(users[0]);
+        expect(user.name).toEqual(users[0].name);
+        expect(user.email).toEqual(users[0].email);
+        expect(user.passwd).not.toEqual(users[0].passwd); // passwd should be hashed
     });
 
-    it('index method should return a list of users', async () => {
-        const result = await model.index();
+    it('list method should return a list of users', async () => {
+        const result = await ModelUser.list();
         expect(result.length).toEqual(1);
     });
 
-    it('show method should return the correct user', async () => {
-        const result = await model.show(user.id);
-        expect(result.email).toEqual('email@something.com');
-        expect(result.firstname).toEqual('First');
-        expect(result.lastname).toEqual('Last');
+    it('get method should return the correct user', async () => {
+        const result = await ModelUser.get(user.id);
+        expect(result.name).toEqual(users[0].name);
+        expect(result.email).toEqual(users[0].email);
+        expect(result.passwd).not.toEqual(users[0].passwd); // passwd should be hashed
     });
 
     it('authenticate with correst user/pass to approve login', async () => {
-        const result = await model.authenticate('email@something.com', 'Pass');
+        const result = await ModelUser.authenticate(users[0].email, users[0].passwd);
         expect(result).not.toBeNull();
     });
 
     it('authenticate with wrong pass to approve login', async () => {
-        const result = await model.authenticate('email@something.com', 'Wrong');
+        const result = await ModelUser.authenticate(users[0].email, "wrong");
         expect(result).toBeNull();
     });
 
     it('authenticate with wrong user to approve login', async () => {
-        const result = await model.authenticate('wrong@something.com', 'Pass');
+        const result = await ModelUser.authenticate('wrong@something.com', users[0].passwd);
         expect(result).toBeNull();
     });
 
     it('update method should update a product fields', async () => {
-        const result = await model.update({
+        const update_name = 'name_update';
+        const email_update = 'email_update';
+        const passwd_update = 'passwd_update';
+        const result = await ModelUser.update({
             id: user.id,
-            email: 'email_update@something.com',
-            firstname: 'First_update',
-            lastname: 'Last_update',
-            userpassword: 'Pass_update'
+            name: update_name,
+            email: email_update,
+            passwd: passwd_update
         });
         expect(result.email).toEqual('email_update@something.com');
-        expect(result.firstname).toEqual('First_update');
-        expect(result.lastname).toEqual('Last_update');
+        expect(result.name).toEqual('name_update');
+        expect(await ModelUser.authenticate(email_update, passwd_update)).not.toBeNull();
     });
 
     it('delete method should remove the user', async () => {
-        await model.delete(user.id);
-        const result = await model.index()
+        await ModelUser.delete(user.id);
+        const result = await ModelUser.list()
 
         expect(result).toEqual([]);
     });
