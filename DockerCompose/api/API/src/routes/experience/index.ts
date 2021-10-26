@@ -37,7 +37,7 @@ experience.get('/:id', (request: express.Request, response: express.Response) =>
         return response.status(200).send(returned);
     })
     .catch(error => {
-        return response.status(400).send(`Could not get an experience ${id}. Error: ${(error as Error).message}`);
+        return response.status(404).send(`Could not get an experience ${id}. Error: ${(error as Error).message}`);
     });
 });
 

@@ -1,6 +1,6 @@
 import request from 'supertest';
 import app from '../../../server';
-import { ModelTag, Tag } from '../../../models/tag';
+import { Tag } from '../../../models/tag';
 import { ModelUser, User } from '../../../models/user';
 import { loginToken } from '../../../routes/user';
 
@@ -36,9 +36,8 @@ describe('Test Suite for /api/tag', () => {
     // - Create [token required]
     it(`POST /api/tag/${tags[0].tag} should add a tag`, async () => {
         await req
-            .post('/api/tag/create')
+            .post(`/api/tag/${tags[0].tag}`)
             .auth(token, {type: 'bearer'})
-            .send(tags[0])
             .expect(200)
             .expect((response) => {
                 const tag = response.body as Tag;
@@ -47,53 +46,42 @@ describe('Test Suite for /api/tag', () => {
             });
     });
 
+    it(`POST /api/tag/${tags[0].tag} for duplicate should return 409`, async () => {
+        await req
+            .post(`/api/tag/${tags[0].tag}`)
+            .auth(token, {type: 'bearer'})
+            .expect(409);
+    });
+
     // - Inex
     // - [OPTIONAL] Top 5 most popular products
     // - [OPTIONAL] Products by category (args: product category)
-    it('/api/tag/list', async () => {
+    it('GET /api/tag/list', async () => {
         await req
             .get('/api/tag/list')
             .expect(200)
             .expect((response) => {
                 const products = response.body as Tag[];
-                expect(products.length).toBe(2);
+                expect(products.length).toBe(1);
             });
     });
 
-    // - Show
-    it(`/api/tag/get/${tag[0].id}`, async () => {
+    // Get
+    it(`GET /api/tag/${tags[0].tag}`, async () => {
         await req
-            .get(`/api/tag/show/${product1id}`)
+            .get(`/api/tag/${tags[0].tag}`)
             .expect(200)
             .expect ( (response) => {
                 expect(response.body)
-                .toEqual(
-                    {
-                        id: product1id,
-                        product_name: 'product1',
-                        price: 123456,
-                        category: category1.id
-                    }
-                );
+                .toEqual(tags[0]);
             });
     });
 
     // - Delete
     it('/api/tag/delete', async () => {
         await req
-            .delete(`/api/tag/${product1id}`)
+            .delete(`/api/tag/${tags[0].tag}`)
             .auth(token, {type: 'bearer'})
             .expect(200);
-        await req
-            .delete(`/api/tag/${product2id}`)
-            .auth(token, {type: 'bearer'})
-            .expect(200);
-        await req
-            .get('/api/tag/index')
-            .expect(200)
-            .expect ( (response) => {
-                expect(response.body)
-                .toEqual([]);
-            });
     });
 });

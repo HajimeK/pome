@@ -365,7 +365,8 @@ delete(tag: string): Tag {}
 CREATE TABLE IF NOT EXISTS tag (
   id SERIAL,
   tag VARCHAR(8) NOT NULL,
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  CONSTRAINT tag_unique UNIQUE (tag)
 );
 ```
 

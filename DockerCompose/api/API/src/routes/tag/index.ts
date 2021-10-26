@@ -27,7 +27,7 @@ tag.get('/:tag', (request: express.Request, response: express.Response) => {
         return response.status(200).send(tag);
     })
     .catch(error => {
-        return response.status(400).send(`Could not get a user. Error: ${(error as Error).message}`);
+        return response.status(404).send(`Could not get a tag. Error: ${(error as Error).message}`);
     })
 });
 
@@ -37,7 +37,7 @@ tag.post('/:tag', verifyAuthToken, (request: express.Request, response: express.
         return response.status(200).send(tag);
     })
     .catch(error => {
-        return response.status(400).send(`Could not get a user. Error: ${(error as Error).message}`);
+        return response.status(409).send(`Could not create a tag. Error: ${(error as Error).message}`);
     })
 });
 
@@ -47,7 +47,7 @@ tag.delete('/:tag', verifyAuthToken, (request: express.Request, response: expres
         return response.status(200).send(tag);
     })
     .catch(error => {
-        return response.status(400).send(`Could not get a user. Error: ${(error as Error).message}`);
+        return response.status(404).send(`Could not delete a tag. Error: ${(error as Error).message}`);
     })
 });
 
