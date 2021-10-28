@@ -18,13 +18,13 @@
         - [contact](#contact-1)
       - [Services](#services)
         - [experiences-api](#experiences-api)
-    - [Middleware with express.js and Backend DB](#middleware-with-expressjs-and-backend-db)
-      - [Architecture](#architecture)
-        - [API](#api)
+  - [Middleware with express.js and Backend DB](#middleware-with-expressjs-and-backend-db)
+    - [Architecture](#architecture)
+      - [API](#api)
         - [Database](#database)
       - [Experience](#experience)
-          - [Model](#model)
-          - [Funcions](#funcions)
+        - [Model](#model)
+        - [Funcions](#funcions)
         - [Endpoint API](#endpoint-api)
           - [GET /api/experience/list?tag=<tagid>](#get-apiexperiencelisttagtagid)
           - [GET /api/experience/:idx](#get-apiexperienceidx)
@@ -55,8 +55,11 @@
         - [Model](#model-3)
         - [Endpoint API](#endpoint-api-3)
         - [Tables](#tables-2)
-      - [Queries](#queries)
-
+    - [How to launch and Deploy](#how-to-launch-and-deploy)
+      - [Launch locally with Docker Composer](#launch-locally-with-docker-composer)
+      - [Deploy](#deploy)
+        - [To AWS](#to-aws)
+        - [To Azure](#to-azure)
 ## Page Design
 
 ![Site Design](sitedesign.png)
@@ -119,18 +122,18 @@ ng generate service experiences-api
 
 ##### experiences-api
 
-### Middleware with express.js and Backend DB
+## Middleware with express.js and Backend DB
 
-#### Architecture
+### Architecture
 
-##### API
+#### API
 ##### Database
 
 ![](tabledesign.png)
 
 #### Experience
 
-###### Model
+##### Model
 
 ```js
 export type Experience = {
@@ -141,7 +144,7 @@ export type Experience = {
 };
 ```
 
-###### Funcions
+##### Funcions
 The functions created to exchange the model.
 
 ```js
@@ -508,7 +511,56 @@ CREATE TABLE IF NOT EXISTS inquiry (
 );
 ```
 
+### How to launch and Deploy
+
+#### Launch locally with Docker Composer
+
+| tool | version |
+|:--|--:|
+| docker-compose | 1.25.5 |
+| Docker | 20.10.8 |
+| Node.js | 14.8.0 |
+| npm | 6.14.8 |
+
+To launch the application for a local integration test,
+run the ui, middle api and database server with Docker Composer as a daemon.
+
+```sh
+cd DockerComposer
+sudo docker-compose -up d
+```
+
+To shut down.
+
+```sh
+cd DockerComposer
+sudo docker-compose -down
+```
+
+If you want to clear up the environment, after a local integration, run below.
+
+```sh
+docker rm -f $(docker ps -a -q)
+docker volume rm $(docker volume ls -q)
+```
+
+#### Deploy
+
+Target environment.
+Here I am going to try deploying to both AWS and Azure.
+
+![](deploy.png)
+
+##### To AWS
+
+https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/WebsiteHosting.html
+
+https://docs.aws.amazon.com/ja_jp/elasticbeanstalk/latest/dg/using-features.managing.db.html
 
 
 
-#### Queries
+##### To Azure
+
+https://docs.microsoft.com/ja-jp/azure/developer/python/how-to-create-static-sites
+
+https://docs.microsoft.com/ja-jp/azure/postgresql/flexible-server/tutorial-webapp-server-vnet
