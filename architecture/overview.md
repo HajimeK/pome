@@ -519,8 +519,9 @@ CREATE TABLE IF NOT EXISTS inquiry (
 |:--|--:|
 | docker-compose | 1.25.5 |
 | Docker | 20.10.8 |
-| Node.js | 14.8.0 |
+| Node.js | 16.13.0 |
 | npm | 6.14.8 |
+| Angular CLI | 12.2.12 |
 
 To launch the application for a local integration test,
 run the ui, middle api and database server with Docker Composer as a daemon.
