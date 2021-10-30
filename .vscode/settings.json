@@ -8,5 +8,6 @@
     "azure.tenant": "60e63508-9cfd-4013-9a1f-7610707b07ce",
     "azureFunctions.scmDoBuildDuringDeployment": true,
     "azureFunctions.pythonVenv": ".venv",
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "circleci-vscode.apiToken": "fb291b3481a8e189f710750d2949a3b317ae217d"
 }
