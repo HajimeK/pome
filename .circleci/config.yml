@@ -7,6 +7,8 @@ orbs:
   # Orbs reduce the amount of configuration required for common tasks.
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/node
   node: circleci/node@4.7
+  aws-cli: circleci/aws-cli@2.0.3
+  azure-cli: circleci/azure-cli@1.2.0
 
 jobs:
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
@@ -26,10 +28,15 @@ jobs:
       - node/install-packages:
           # If you are using yarn, change the line below from "npm" to "yarn"
           pkg-manager: npm
+  test:
+    steps:
       - run:
           name: Run tests
           command: npm test
-
+  deploy:
+    steps:
+      - deploy-to-aws
+      - deploy-to-azure
 workflows:
   # Below is the definition of your workflow.
   # Inside the workflow, you provide the jobs you want to run, e.g this workflow runs the build-and-test job above.
