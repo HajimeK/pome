@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-experience-head',
-  templateUrl: './experience-head.component.html',
-  styleUrls: ['./experience-head.component.css']
+  selector: 'app-experiences-head',
+  templateUrl: './experiences-head.component.html',
+  styleUrls: ['./experiences-head.component.css']
 })
 export class ExperiencesHeadComponent implements OnInit {
 
