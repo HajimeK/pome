@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { setTheme } from 'ngx-bootstrap/utils';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ui';
+  title = 'Portofolio Of My Experiences';
+  ngOnInit(){
+    AOS.init();
+    setTheme('bs4');
+  }
 }

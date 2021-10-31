@@ -1,0 +1,11 @@
+
+.content > mat-card {
+    width: 150px;
+}
+
+.carousel-control.left {
+    display: none;
+}
+.carousel-control.right {
+    display: none;
+}
