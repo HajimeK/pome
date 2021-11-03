@@ -58,8 +58,10 @@
     - [How to launch and Deploy](#how-to-launch-and-deploy)
       - [Launch locally with Docker Composer](#launch-locally-with-docker-composer)
       - [Deploy](#deploy)
-        - [To AWS](#to-aws)
-        - [To Azure](#to-azure)
+        - [Target](#target)
+          - [To AWS](#to-aws)
+          - [To Azure](#to-azure)
+        - [Test](#test)
 ## Page Design
 
 ![Site Design](sitedesign.png)
@@ -552,7 +554,8 @@ Here I am going to try deploying to both AWS and Azure.
 
 ![](deploy.png)
 
-##### To AWS
+##### Target
+###### To AWS
 
 https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/WebsiteHosting.html
 
@@ -560,8 +563,21 @@ https://docs.aws.amazon.com/ja_jp/elasticbeanstalk/latest/dg/using-features.mana
 
 
 
-##### To Azure
+###### To Azure
 
 https://docs.microsoft.com/ja-jp/azure/developer/python/how-to-create-static-sites
 
 https://docs.microsoft.com/ja-jp/azure/postgresql/flexible-server/tutorial-webapp-server-vnet
+
+##### Test
+
+All the building blocks are tested locally.
+
+```
+docker-compose up -d
+
+run api test suite
+run
+
+docker-compose down
+```
