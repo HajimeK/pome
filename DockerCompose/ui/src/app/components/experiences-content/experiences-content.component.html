@@ -1,1 +1,21 @@
-<p>experiences-content works!</p>
+<div *ngFor="experience of experiences">
+</div>
+
+<p-carousel [value]="experiences" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
+    <ng-template pTemplate="header">
+        <h5>{{tag}}</h5>
+    </ng-template>
+    <ng-template let-experience pTemplate="item">
+        <div class="product-item">
+            <div class="product-item-content">
+                <div>
+                    <h4 class="p-mb-1">{{experience.title}}</h4>
+                    <h6 class="p-mt-0 p-mb-3">${{experience.note}}</h6>
+                    <div class="car-buttons p-mt-5">
+                        <button pButton pRipple type="button" label="Primary" class="p-button-rounded"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-carousel>

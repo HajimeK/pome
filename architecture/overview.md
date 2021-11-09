@@ -58,10 +58,16 @@
     - [How to launch and Deploy](#how-to-launch-and-deploy)
       - [Launch locally with Docker Composer](#launch-locally-with-docker-composer)
       - [Deploy](#deploy)
+        - [Deploy and Integration with Docker-Composer](#deploy-and-integration-with-docker-composer)
+          - [Environment variables](#environment-variables)
+          - [PostreSQL](#postresql)
+          - [pgadmin4||](#pgadmin4)
+          - [express + node:latest|](#express--nodelatest)
+          - [Angular + node:latest|](#angular--nodelatest)
+        - [Test](#test)
         - [Target](#target)
           - [To AWS](#to-aws)
           - [To Azure](#to-azure)
-        - [Test](#test)
 ## Page Design
 
 ![Site Design](sitedesign.png)
@@ -554,30 +560,91 @@ Here I am going to try deploying to both AWS and Azure.
 
 ![](deploy.png)
 
-##### Target
-###### To AWS
+##### Deploy and Integration with Docker-Composer
 
-https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/WebsiteHosting.html
+(c.f. https://circleci.com/docs/ja/2.0/docker-compose/)
 
-https://docs.aws.amazon.com/ja_jp/elasticbeanstalk/latest/dg/using-features.managing.db.html
+###### Environment variables
 
+![CircleCI Environmental Variable](https://circleci.com/docs/2.0/env-vars/
+#adding-environment-variables-to-a-job)
+###### PostreSQL
 
+```
+   postgres:<br>
+        image: postgres:latest<br>
+        container_name: postgres<br>
+        ports:<br>
+            - '5432:5432'<br>
+        env_file:<br>
+            - .env<br>
+        volumes:<br>
+            - 'postgres:/var/lib/postgresql/data'<br>
+            - ./db/schema.sql:/docker-entrypoint-initdb.d/1-schema.sql<br>
+            - ./db/data.sql:/docker-entrypoint-initdb.d/2-data.sql<br>
+        networks:<br>
+            - backend<br>
+        hostname: postgres<br>
+        restart: always|<br>|
 
-###### To Azure
+```
 
-https://docs.microsoft.com/ja-jp/azure/developer/python/how-to-create-static-sites
+###### pgadmin4||
 
-https://docs.microsoft.com/ja-jp/azure/postgresql/flexible-server/tutorial-webapp-server-vnet
+###### express + node:latest|
+
+###### Angular + node:latest|
 
 ##### Test
 
-All the building blocks are tested locally.
+Launch docker compose in circle CI and run the test script
 
-```
+```js
 docker-compose up -d
-
-run api test suite
-run
-
+npm run api_test
 docker-compose down
+```
+
+##### Target
+###### To AWS
+
+Set up PosgtreSQL environment with the following command.
+
+```sh
+```
+
+https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/WebsiteHosting.html
+
+Set up Elasti Beanstalk environment with the following command.
+
+```sh
+```
+
+https://docs.aws.amazon.com/ja_jp/elasticbeanstalk/latest/dg/using-features.managing.db.html
+
+Set up S3 bucket for Web Hosting with the following command.
+
+```sh
+```
+
+###### To Azure
+
+Set up PosgtreSQL environment with the following command.
+
+```sh
+```
+
+https://docs.microsoft.com/ja-jp/azure/developer/python/how-to-create-static-sites
+
+Set up Azure AppService environment with the following command.
+
+```sh
+```
+
+
+https://docs.microsoft.com/ja-jp/azure/postgresql/flexible-server/tutorial-webapp-server-vnet
+
+Set up Azure Storage for Web Hosting with the following command.
+
+```sh
 ```
