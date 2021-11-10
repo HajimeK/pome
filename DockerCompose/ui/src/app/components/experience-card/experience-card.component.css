@@ -1,0 +1,10 @@
+.example-card {
+    width: 300px;
+    height: 200px;
+    background-color: aliceblue;
+  }
+
+  .example-header-image {
+    background-image: url('https://avatars.githubusercontent.com/u/15336877?v=4');
+    background-size: cover;
+  }

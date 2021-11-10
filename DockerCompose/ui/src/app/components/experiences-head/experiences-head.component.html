@@ -1,8 +1,9 @@
 <div class="header-container">
     <header class="string-align">
-        <tr *ngFor="let tag of tags">
         <nav class="string" >
-            <a [routerLink]="['/experience', tag.tag ]">{{tag.tag}}</a>
+            <div *ngFor="let tag of tags">
+                <a [routerLink]="['/experience', tag.tag ]">{{tag.tag}}</a>
+            </div>
         </nav>
     </header>
 </div>
