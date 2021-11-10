@@ -9,13 +9,12 @@ import { Tag } from 'src/app/services/model';
 })
 export class ExperiencesHeadComponent implements OnInit {
 
-  tags: Tag[] = [{id:0, tag:"AIML"}, {id:0, tag:"IoT"}, {id:0, tag:"Blockchain"}, {id:0, tag:"Cloud"}];
-  constructor(){}
-  //constructor(private experienceAppService: ExperiencesApiService) {}
+  tags: Tag[] = [];
+  constructor(private experienceAppService: ExperiencesApiService) {}
 
   ngOnInit(): void {
-    // this.experienceAppService.getTags().subscribe(async (tags) => {
-    //   this.tags = tags;
-    // });
+    this.experienceAppService.getTags().subscribe(async (tags) => {
+      this.tags = tags;
+    });
   }
 }
