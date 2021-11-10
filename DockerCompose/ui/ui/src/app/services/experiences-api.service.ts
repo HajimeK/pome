@@ -12,10 +12,10 @@ export class ExperiencesApiService {
 
   getTags(): Observable<Tag[]> {
     // API call
-    return this.http.get<Tag[]>('http://api/api/tag/list');
+    return this.http.get<Tag[]>('http://localhost:3000/api/tag/list');
   }
 
   getExperiences(tag: string): Observable<Experience[]> {
-    return this.http.get<Experience[]>(`http://api/api/experiences/${tag}`)
+    return this.http.get<Experience[]>(`http://localhost:3000/api/experiences/${tag}`)
   }
 }

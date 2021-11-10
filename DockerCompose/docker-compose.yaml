@@ -51,7 +51,7 @@ services:
         build: ./ui
         container_name: ui
         ports:
-            - 80:80
+            - 80:4200
         env_file:
             - .env
         depends_on:
