@@ -4,13 +4,13 @@ FROM node:16
 WORKDIR /usr/app
 
 # Copy application dependencies
-COPY ui/*.* ./
+COPY ./ui/*.* ./
 COPY ./ui/src ./
 
 RUN npm install
 # For production
 # RUN npm install --only=production
-RUN npm build
+RUN npm run build
 
 
 EXPOSE 4200

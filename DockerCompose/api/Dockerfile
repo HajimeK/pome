@@ -1,11 +1,11 @@
-FROM node:14
+FROM node:16
 
 # md & cd workdir
 WORKDIR /usr/app
 
 # Copy application dependencies
-COPY api/package*.json ./
-COPY ./api/src ./
+COPY API/package*.json ./
+COPY ./API/src ./
 
 RUN npm install
 # For production
