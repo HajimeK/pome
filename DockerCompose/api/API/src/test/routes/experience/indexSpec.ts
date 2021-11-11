@@ -1,26 +1,13 @@
 import request from 'supertest';
 import app from '../../../server';
-import { ModelOrderStatus, OrderStatus } from '../../../models/orderStatus';
-import { ModelProduct, Product } from '../../../models/tag';
-import { ModelProductCategory, ProductCategory } from '../../../models/productCategory';
+import { ModelTag, Tag } from '../../../models/tag';
 import { ModelUser, User } from '../../../models/user';
-import { OrderItem } from '../../../models/orderItem';
 import { loginToken } from '../../../routes/user';
-import { Order } from '../../../models/order';
 
 // Order
 describe('Test suite for /order', () => {
 
-    const modelProductCategory = new ModelProductCategory();
-    const modelOrderStatus = new ModelOrderStatus();
-    const modelProduct = new ModelProduct();
     const modelUser = new ModelUser();
-    let category: ProductCategory;
-    let order_status: OrderStatus;
-    let status_update: OrderStatus;
-    let product1: Product;
-    let product2: Product;
-    let oi: OrderItem[];
     let user: User;
     let token: string;
     let orderid = 0;
