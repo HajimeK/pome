@@ -44,7 +44,7 @@ export class ModelExperience {
         }
     }
 
-    static async create(experience: Experience, tag?: string): Promise<Experience> {
+    static async create(experience: Experience, tags?: string[]): Promise<Experience> {
         try {
             // DB query
             const conn = await client.connect();
@@ -52,10 +52,12 @@ export class ModelExperience {
             const sql = `INSERT INTO experience (title, note, url) \
                                 VALUES(${experience.title}, ${experience.note}, ${experience.url}) RETURNING *`;
             const result = (await conn.query(sql)).rows[0] as Experience;
-            if (tag !== undefined) {
-                tag = ((await conn.query(sql)).rows[0] as Tag).tag
-                await conn.query(`INSERT INTO relexptag (experience, tag) \
-                                VALUES(${result.id}, ${tag})`);
+            if (tags !== undefined) {
+                for(const tag of tags) {
+                    const tagid = (await ModelTag.get(tag)).id;
+                    await conn.query(`INSERT INTO relexptag (experience, tag) \
+                                    VALUES(${result.id}, ${tagid})`);
+                }
             }
             conn.release();
 
@@ -91,9 +93,11 @@ export class ModelExperience {
 
     static async delete(id: number): Promise<Experience> {
         try {
-            const sql = `DELETE FROM apporder WHERE id=${id}`;
             const conn = await client.connect();
-            const result = await conn.query(sql);
+            const sqlexp = `DELETE FROM experience WHERE id=${id}`;
+            const result = await conn.query(sqlexp);
+            const sqlreleexp = `DELETE FROM relexptag WHERE experience=${id}`;
+            await conn.query(sqlreleexp);
             conn.release();
 
             return result.rows[0] as Experience;
