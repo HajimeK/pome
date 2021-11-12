@@ -7,7 +7,6 @@ import { loginToken } from '../../../routes/user';
 // Order
 describe('Test suite for /order', () => {
 
-    const modelUser = new ModelUser();
     let user: User;
     let token: string;
     let orderid = 0;
@@ -15,47 +14,13 @@ describe('Test suite for /order', () => {
     const req = request(app);
 
     beforeAll(async () => {
-        // create a product category
-        category = await modelProductCategory.create({
-            id: 0,
-            category: 'category1'
-        });
-        // create a order status
-        order_status = await modelOrderStatus.create({
-            id: 0,
-            order_status: 'active'
-        });
-        status_update = await modelOrderStatus.create({
-            id: 0,
-            order_status: 'completed'
-        });
-        // create a product 1
-        product1 = await modelProduct.create({
-            id: 0,
-            product_name: 'product1',
-            price: 123456,
-            category: category.id
-        });
-        // create a product 2
-        product2 = await modelProduct.create({
-            id: 0,
-            product_name: 'product2',
-            price: 123456,
-            category: category.id
-        });
-
-        oi = [
-            {id: 0, apporder: 0, product: product1.id, quantity: 10},
-            {id: 0, apporder: 0, product: product2.id, quantity: 10}
-        ];
 
         // create a user
-        user = await modelUser.create({
+        user = await ModelUser.create({
             id: 0,
+            name: 'hajime',
             email: 'email@something.com',
-            firstname: 'First',
-            lastname: 'Last',
-            userpassword: 'Pass'
+            passwd: 'Pass'
         });
 
         // login to get auth token
@@ -65,19 +30,11 @@ describe('Test suite for /order', () => {
 
     afterAll(async () => {
         // delete a user
-        await modelUser.delete(user.id);
-        // delete a product
-        await modelProduct.delete(product2.id);
-        // delete a product
-        await modelProduct.delete(product1.id);
-        // delete a order status
-        await modelOrderStatus.delete(order_status.id);
-        // delete a product category
-        await modelProductCategory.delete(category.id);
+        await ModelUser.delete(user.id);
     })
 
-    it('/order/create create method should add an order', async () => {
-        await req.post('/order/create')
+    it('POST /api/experience (token requied) should add an experience', async () => {
+        await req.post('/api/experience')
             .auth(token, {type: 'bearer'})
             .send(
                 {
