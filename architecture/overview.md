@@ -238,10 +238,13 @@ If the title is duplicated, return an error resopnse (409).
 - request body
 ```js
 {
-  id: number,
-  title: string,
-  description: string,
-  url?: string
+  experience: {
+    id: number,
+    title: string,
+    description: string,
+    url?: string
+  },
+  tags: ['tag1', 'tag2',...]
 };
 ```
 

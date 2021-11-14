@@ -10,14 +10,6 @@ describe('Test suite for /order', () => {
 
     let user: User;
     let token: string;
-    let orderid = 0;
-
-    let experience1 : Experience;
-    let experience2 : Experience;
-    let experience3 : Experience;
-    let experience4 : Experience;
-    let tag1: Tag;
-    let tag2: Tag;
 
     const experiences: Experience[] = [
         {
@@ -46,6 +38,7 @@ describe('Test suite for /order', () => {
         }
     ];
 
+    const tags: Tag[] = [{id: -1, tag :'tag1'}, {id: -1, tag: 'tag2'}]
 
     const req = request(app);
 
@@ -54,8 +47,12 @@ describe('Test suite for /order', () => {
             name: "admintest",
             email: "admin@test.test",
             passwd: "password"});
-        tag1 = await ModelTag.create("tag1");
-        tag2 = await ModelTag.create("tag2");
+        // login to get auth token
+        const login = await req.post('/user/login').send({email: 'admin@test.test', password: 'password'});
+        token = (login.body as loginToken).token;
+
+        tags[0] = await ModelTag.create(tags[0].tag);
+        tags[1] = await ModelTag.create(tags[1].tag);
     });
 
     afterAll( async () => {
@@ -71,109 +68,75 @@ describe('Test suite for /order', () => {
         await ModelUser.delete(user.id);
     });
 
-    it('create method should add an experience, and assign id larger than or equal to 0', async () => {
-        experience1 = await ModelExperience.create(
-            experiences[0],
-            tag1.tag
-        );
-        expect(experience1.id).toBeGreaterThan(-1);
-    });
-
-    it('POST /api/experience (token requied) should add an experience', async () => {
-        await req.post(`/api/experience`)
+    it('POST /api/experience (token requied) create experiences', async () => {
+        for( const experience of experiences) {
+            await req.post(`/api/experience`)
             .auth(token, {type: 'bearer'})
-            .send(
-                experiences[0]
-            )
+            .send({
+                experience: experience,
+                tags: tags
+            })
             .expect(200)
             .expect((response) => {
-                const order = response.body as Order;
-                expect(order.appuser).toBe(user.id);
-                expect(order.order_status).toBe(order_status.id);
-                orderid = order.id;
+                console.log(response);
+                expect((response.body as unknown as Experience).title).toBe(experience.title);
+                experience.id = ((response.body as unknown) as Experience).id;
+            });
+        }
+    });
+
+    it('GET /api/experience/list to return all the experiences', async () => {
+        const expectedLength = (await ModelExperience.list()).length;
+        await req.get('/api/expereence/list')
+        .expect(200)
+        .expect((response) => {
+            expect((response.body as unknown as Experience[]).length)
+            .toBe(expectedLength);
+        });
+    });
+
+    it(`GET /api/experience/list?tag=${tags[0].tag} to return the experiences tagged to ${tags[0].tag}`, async () => {
+        const expectedLength = (await ModelExperience.list(tags[0].tag)).length;
+        await req.get(`/api/expereence/list?tag=${tags[0].tag}`)
+        .expect(200)
+        .expect((response) => {
+            expect((response.body as unknown as Experience[]).length)
+            .toBe(expectedLength);
+        });
+    });
+
+    it('GET /api/experience/list should return a list of experience', async () => {
+        await req.get(`/api/experience/list`)
+            .expect(200)
+            .expect((response) => {
+                console.log(response);
             });
     });
 
-
-    it('list method should return a list of experience', async () => {
-        experience2 = await ModelExperience.create(
-            experiences[1],
-            tag1.tag
-        );
-        experience3 = await ModelExperience.create(
-            experiences[2],
-            tag2.tag
-        );
-        experience3 = await ModelExperience.create(
-            experiences[3]
-        );
-        const result = await ModelExperience.list();
-        expect(result.length).toEqual(4);
+    it('GET /api/experience/:id to get the experience of id', async () => {
+        await req.get(`/api/expereence/${experiences[0].id}`)
+        .expect(200)
+        .expect((response) => {
+            expect((response.body as unknown as Experience).title)
+            .toBe(experiences[0].title);
+        });
     });
 
-    it('list method with a tag name should return a list of experiences with the tag', async () => {
-        const result = await ModelExperience.list('tag1');
-        expect(result.length).toEqual(2);
+    it('PUT /api/experience (token requied) to update the experience', async () => {
+        experiences[0].title = 'updated';
+        await req.put('/api/expereence')
+        .send(experiences[0])
+        .expect(200)
+        .expect((response) => {
+            expect((response.body as unknown as Experience).title)
+            .toBe('updated');
+        });
     });
 
-    it('Specify ID to return the correct experience', async () => {
-        expect(await ModelExperience.get(experience1.id)).toEqual(experience1);
-        expect(await ModelExperience.get(experience2.id)).toEqual(experience1);
-        expect(await ModelExperience.get(experience3.id)).toEqual(experience3);
-        expect(await ModelExperience.get(experience4.id)).toEqual(experience4);
-        expect(await ModelExperience.get(experience4.id+1)).toThrowError();
-    });
-
-    it('update method should update an experience status', async () => {
-        const updatedTitle = "Experience1update";
-        experience1.title = updatedTitle;
-        expect((await ModelExperience.update(experience1)).title).toEqual(updatedTitle);
-    });
-
-    it('delete method should remove the experience', async () => {
-        await ModelExperience.delete(experience1.id);
-        const result = await ModelExperience.get(experience1.id)
-        expect(result).toBeNull();
-    });
-
-
-
-    it(`/order/index/userid index method should return a list of order for user`, async () => {
-        await req.get(`/order/index/${user.id}`)
-            .auth(token, {type: 'bearer'})
-            .expect(200)
-            .expect((response) => {
-                const orders = response.body as Order[];
-                expect(orders.length).toBe(1);
-            });
-    });
-
-    it('/order/index/1?status=2 index method should return a list of order for user with completed', async () => {
-        await req.get(`/order/index/${user.id}?status=${order_status.id}`)
-            .auth(token, {type: 'bearer'})
-            .expect(200)
-            .expect((response) => {
-                const order = response.body as Order[];
-                expect(order[0].appuser).toBe(user.id);
-                expect(order[0].order_status).toBe(order_status.id);
-            });
-    });
-
-    it(`/order/show/${orderid} show method should return the correct order`, async () => {
-        await req.get(`/order/show/${orderid}`)
-            .auth(token, {type: 'bearer'})
-            .expect(200)
-            .expect((response) => {
-                const order = response.body as Order;
-                expect(order.appuser).toBe(user.id);
-                expect(order.order_status).toBe(order_status.id);
-            });
-    });
-
-    it('/order/delete delete method should remove the order', async () => {
-        await req
-            .delete(`/order/${orderid}`)
-            .auth(token, {type: 'bearer'})
-            .expect(200);
+    it('DELETE /experience/:id (token requied) delete a experience, and could not be deleted again', async () => {
+        await req.delete(`/api/expereence/${experiences[0].id}`)
+        .expect(200)
+        await req.delete(`/api/expereence/${experiences[0].id}`)
+        .expect(404)
     });
 });
