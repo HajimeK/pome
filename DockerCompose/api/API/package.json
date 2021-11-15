@@ -12,7 +12,7 @@
     "db-up": "db-migrate --env test up",
     "db-down": "db-migrate --env test down",
     "dev": "db-migrate --env test up && nodemon src/server.ts",
-    "run": "node dist/server.js",
+    "start": "node dist/server.js",
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess 'node ./dist/server.js'"
   },
   "author": "Hajime Kawata",

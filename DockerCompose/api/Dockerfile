@@ -8,9 +8,9 @@ COPY API/package*.json ./
 COPY ./API/src ./
 
 RUN npm install
+RUN npm run build
 # For production
 # RUN npm install --only=production
-
 
 EXPOSE 3000
 CMD [ "npm", "watch" ]
