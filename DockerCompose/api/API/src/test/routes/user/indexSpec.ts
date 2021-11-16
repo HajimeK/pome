@@ -16,12 +16,17 @@ describe('Test suite for /user', () => {
     let user: User;
     const testuser: User = {
         id: -1, // -1 if not assigned in DB
+        name: 'admin',
+        email: 'admin@test.test',
+        passwd: 'password',
+    };
+
+    let createdUser: User = {
+        id: -1, // -1 if not assigned in DB
         name: 'test',
         email: 'test@test.test',
         passwd: 'password',
     };
-
-    let createdUser: User;
     let token: string;
     let credential: loginToken
 

@@ -64,7 +64,7 @@ describe("Experience Model", () => {
     it('create method should add an experience, and assign id larger than or equal to 0', async () => {
         experience1 = await ModelExperience.create(
             experiences[0],
-            tag1.tag
+            [tag1.tag]
         );
         expect(experience1.id).toBeGreaterThan(-1);
     });
@@ -72,11 +72,11 @@ describe("Experience Model", () => {
     it('list method should return a list of experience', async () => {
         experience2 = await ModelExperience.create(
             experiences[1],
-            tag1.tag
+            [tag1.tag]
         );
         experience3 = await ModelExperience.create(
             experiences[2],
-            tag2.tag
+            [tag2.tag]
         );
         experience3 = await ModelExperience.create(
             experiences[3]
