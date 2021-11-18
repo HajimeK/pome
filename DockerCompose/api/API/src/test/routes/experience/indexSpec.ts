@@ -44,7 +44,7 @@ describe('Test suite for /order', () => {
 
     beforeAll(async () => {
         user = await ModelUser.create({id: -1,
-            name: "admintest",
+            username: "admintest",
             email: "admin@test.test",
             passwd: "password"});
         // login to get auth token

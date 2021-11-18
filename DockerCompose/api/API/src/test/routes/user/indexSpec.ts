@@ -9,21 +9,21 @@ describe('Test suite for /user', () => {
 
     const adminuser: User = {
         id: -1, // -1 if not assigned in DB
-        name: 'admintest',
+        username: 'admintest',
         email: 'admin@test.test',
         passwd: 'password',
     };
     let user: User;
     const testuser: User = {
         id: -1, // -1 if not assigned in DB
-        name: 'admin',
+        username: 'admin',
         email: 'admin@test.test',
         passwd: 'password',
     };
 
     let createdUser: User = {
         id: -1, // -1 if not assigned in DB
-        name: 'test',
+        username: 'test',
         email: 'test@test.test',
         passwd: 'password',
     };
@@ -61,7 +61,7 @@ describe('Test suite for /user', () => {
             .expect ( (response) => {
                 createdUser = response.body as User;
                 expect(createdUser.email).toBe(testuser.email);
-                expect(createdUser.name).toBe(testuser.name);
+                expect(createdUser.username).toBe(testuser.username);
                 testuser.id = createdUser.id;
             });
     });
@@ -85,7 +85,7 @@ describe('Test suite for /user', () => {
             .expect ( (response) => {
                 const user = response.body as User;
                 expect(user.email).toBe(createdUser.email);
-                expect(user.name).toBe(createdUser.name);
+                expect(user.username).toBe(createdUser.username);
                 console.log(user);
             });
     });

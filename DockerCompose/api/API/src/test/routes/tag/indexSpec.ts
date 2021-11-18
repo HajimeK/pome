@@ -17,7 +17,7 @@ describe('Test Suite for /api/tag', () => {
     ];
     let user:User = {
         id: -1, // -1 if not assigned in DB
-        name: "User",
+        username: "User",
         email: "email@test.dev",
         passwd: "test_password"
     }

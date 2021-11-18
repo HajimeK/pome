@@ -1,4 +1,4 @@
-CREATE DATABASE pomeapi_test
+CREATE DATABASE pomedb_dev
     WITH
     OWNER = :POSTGRES_USER
     ENCODING = 'UTF8'
@@ -7,7 +7,7 @@ CREATE DATABASE pomeapi_test
     TABLESPACE = pg_default
     CONNECTION LIMIT = -1;
 
-CREATE DATABASE pomeapi
+CREATE DATABASE pomeadb
     WITH
     OWNER = :POSTGRES_USER
     ENCODING = 'UTF8'

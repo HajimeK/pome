@@ -41,7 +41,7 @@ describe("Experience Model", () => {
 
     beforeAll(async () => {
         user = await ModelUser.create({id: -1,
-            name: "admintest",
+            username: "admintest",
             email: "admin@test.test",
             passwd: "password"});
         tag1 = await ModelTag.create("tag1");
