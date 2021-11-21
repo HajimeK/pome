@@ -56,8 +56,8 @@ describe("User Model", () => {
             email: email_update,
             passwd: passwd_update
         });
-        expect(result.email).toEqual('email_update@something.com');
-        expect(result.username).toEqual('name_update');
+        expect(result.email).toEqual(email_update);
+        expect(result.username).toEqual(update_name);
         expect(await ModelUser.authenticate(email_update, passwd_update)).not.toBeNull();
     });
 

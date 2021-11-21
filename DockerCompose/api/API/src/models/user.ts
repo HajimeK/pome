@@ -21,7 +21,7 @@ export class ModelUser {
     static async list(): Promise<User[]> {
         try {
             // Generate SQL query
-            const sql = 'SELECT id, name, passwd FROM appuser';
+            const sql = 'SELECT id, username, email FROM appuser';
             // request to DB
             const conn = await client.connect();
             const result = (await conn.query(sql)).rows as User[];
@@ -35,7 +35,7 @@ export class ModelUser {
 
     static async get(id: number): Promise<User> {
         try {
-            const sql = `SELECT appuser.id, appuser.name, appuser.email \
+            const sql = `SELECT id, username, email \
                             FROM appuser \
                             WHERE id=${id}`;
             // request to DB
@@ -54,7 +54,7 @@ export class ModelUser {
             const conn = await client.connect();
             const hash = bcrypt.hashSync(u.passwd + (BCRYPT_PASSWORD as string),
                                         Number(SALT_ROUNDS));
-            const sql = `INSERT INTO appuser (name, email, passwd ) \
+            const sql = `INSERT INTO appuser (username, email, passwd ) \
                         VALUES('${u.username}', '${u.email}', '${hash}') RETURNING *`;
             // request to DB
             const result = (await conn.query(sql)).rows[0] as User;
@@ -72,9 +72,9 @@ export class ModelUser {
             const hash = bcrypt.hashSync(u.username + (process.env.BCRYPT_PASSWORD as string),
                                         Number(process.env.SALT_ROUND));
             const sql = `UPDATE appuser \
-                            SET name = '${u.username}', \
+                            SET username = '${u.username}', \
                                 email   = '${u.email}', \
-                                userpassword = '${hash}' \
+                                passwd = '${hash}' \
                             WHERE  appuser.id = ${u.id} \
                             RETURNING *`;
             // request to DB

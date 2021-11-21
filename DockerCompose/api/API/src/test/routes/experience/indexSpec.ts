@@ -5,8 +5,8 @@ import { ModelUser, User } from '../../../models/user';
 import { ModelExperience, Experience } from '../../../models/Experience';
 import { loginToken } from '../../../routes/user';
 
-// Order
-describe('Test suite for /order', () => {
+// Experience
+describe('Test suite for /api/experience', () => {
 
     let user: User;
     let token: string;
@@ -16,25 +16,25 @@ describe('Test suite for /order', () => {
             id: -1, // -1 if not assigned in DB
             title: "Experience1",
             note: "This is my experience about test so that we can do something",
-            url: "https://superbc.dev"
+            urle: "https://superbc.dev"
         },
         {
             id: -1, // -1 if not assigned in DB
             title: "Experience2",
             note: "This is my experience about test so that we can do something",
-            url: "https://superbc.dev"
+            urle: "https://superbc.dev"
         },
         {
             id: -1, // -1 if not assigned in DB
             title: "Experience3",
             note: "This is my experience about test so that we can do something",
-            url: "https://superbc.dev"
+            urle: "https://superbc.dev"
         },
         {
             id: -1, // -1 if not assigned in DB
             title: "Experience4",
             note: "This is my experience about test so that we can do something",
-            url: "https://superbc.dev"
+            urle: "https://superbc.dev"
         }
     ];
 
@@ -48,7 +48,7 @@ describe('Test suite for /order', () => {
             email: "admin@test.test",
             passwd: "password"});
         // login to get auth token
-        const login = await req.post('/user/login').send({email: 'admin@test.test', password: 'password'});
+        const login = await req.post('/user/login').send({email: user.email, password: 'password'});
         token = (login.body as loginToken).token;
 
         tags[0] = await ModelTag.create(tags[0].tag);

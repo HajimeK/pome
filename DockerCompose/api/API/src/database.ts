@@ -26,7 +26,7 @@ if(process.env.ENV === 'prod') {
   // otherwise explicitly declared as 'pord' run as ENV === 'test'
   client = new Pool({
     host: process.env.POSTGRES_HOST_TEST,
-    database: process.env.POSTGRES_DB_TEST,
+    database: process.env.POSTGRES_DB_DEV,
     user: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
   });

@@ -15,7 +15,7 @@ app.use(morgan("common"));
 app.use(helmet());
 
 // whitelist
-const allowedOrigins = ['http://localhost:3000'];
+const allowedOrigins = ['http://localhost:3000', 'http://ui:80'];
 const corsOptions: cors.CorsOptions = {
     origin: allowedOrigins
 };

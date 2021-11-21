@@ -8,7 +8,7 @@
     "check-types": "tsc --noEmit",
     "build": "npm run lint && npm run check-types && npx tsc",
     "jasmine": "jasmine-ts --config=spec/jasmine.json",
-    "test": "npm run build && npm run db-up && npm run jasmine && npm run db-down",
+    "test": "npm run db-up && npm run jasmine && npm run db-down",
     "db-up": "db-migrate --env dev up",
     "db-down": "db-migrate --env dev down",
     "dev": "db-migrate --env test up && nodemon src/server.ts",

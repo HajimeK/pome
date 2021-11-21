@@ -5,7 +5,7 @@ import { loginToken } from '../../../routes/user';
 import { create } from 'domain';
 
 // User
-describe('Test suite for /user', () => {
+describe('Test suite for /api/user', () => {
 
     const adminuser: User = {
         id: -1, // -1 if not assigned in DB
