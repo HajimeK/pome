@@ -109,7 +109,6 @@ export class ModelExperience {
             const sqlexp = `DELETE FROM experience WHERE id=${id}`;
             const result = await conn.query(sqlexp);
             conn.release();
-            console.log(result);
 
             return result.rows[0] as Experience;
         } catch (error) {
