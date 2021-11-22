@@ -41,12 +41,12 @@ describe("User Model", () => {
         expect(result).toBeNull();
     });
 
-    it('authenticate with wrong user to approve login', async () => {
+    it('authenticate with wrong user to reject login', async () => {
         const result = await ModelUser.authenticate('wrong@something.com', users[0].passwd);
         expect(result).toBeNull();
     });
 
-    it('update method should update a product fields', async () => {
+    it('update method should allow login after update', async () => {
         const update_name = 'name_update';
         const email_update = 'email_update';
         const passwd_update = 'passwd_update';

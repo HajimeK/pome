@@ -8,6 +8,11 @@ export type Experience = {
     urle: string
 };
 
+export type ExperienceBody = {
+    experience: Experience,
+    tags: string[]
+};
+
 export class ModelExperience {
 
     static async list(tagName?: string): Promise<Experience[]> {
@@ -104,6 +109,7 @@ export class ModelExperience {
             const sqlexp = `DELETE FROM experience WHERE id=${id}`;
             const result = await conn.query(sqlexp);
             conn.release();
+            console.log(result);
 
             return result.rows[0] as Experience;
         } catch (error) {

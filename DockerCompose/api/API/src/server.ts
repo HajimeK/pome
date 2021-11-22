@@ -31,9 +31,9 @@ app.use(limitter);
 app.use(express.json())
 
 // router
-app.use('/app/experience', experience);
-app.use('/app/user', user);
-app.use('/app/tag', tag);
+app.use('/api/experience', experience);
+app.use('/api/user', user);
+app.use('/api/tag', tag);
 
 app.get('/', function (request: Request, response: Response) {
     response.status(200).send('Receving requests from your IP address:' + request.ip);

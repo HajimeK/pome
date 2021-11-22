@@ -69,8 +69,8 @@ export class ModelUser {
     static async update(u: User): Promise<User> {
         try {
             const conn = await client.connect();
-            const hash = bcrypt.hashSync(u.username + (process.env.BCRYPT_PASSWORD as string),
-                                        Number(process.env.SALT_ROUND));
+            const hash = bcrypt.hashSync(u.passwd + (BCRYPT_PASSWORD as string),
+                                        Number(SALT_ROUNDS));
             const sql = `UPDATE appuser \
                             SET username = '${u.username}', \
                                 email   = '${u.email}', \

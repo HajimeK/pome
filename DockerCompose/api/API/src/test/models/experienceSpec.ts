@@ -40,7 +40,6 @@ describe("Experience Model", () => {
     ];
 
     beforeAll(async () => {
-        console.log("before all for the experience model");
         user = await ModelUser.create({id: -1,
             username: "admintest",
             email: "admin@test.test",

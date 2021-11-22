@@ -5,7 +5,6 @@ describe('Test Suite for database client', () => {
 
     let conn: PoolClient;
     it('connect to db', async () => {
-        console.log(client);
         conn = await client.connect();
         expect(conn).not.toBeNull();
     });
