@@ -413,7 +413,7 @@ CREATE TABLE IF NOT EXISTS relexptag (
 ```js
 export type User = {
   id: number, // -1 if not assigned in DB
-  name: string,
+  username: string,
   email: string,
   passwd: string,
 };
@@ -481,7 +481,7 @@ Set the following in the request body.
 ```
 {
     id: number,
-    user: string,
+    username: string,
     email: string,
     passwd: string
 }
@@ -500,12 +500,12 @@ Set the following in the request body.
 The email and passwd should be hashed.
 
 ```sql
-CREATE TABLE IF NOT EXISTS lvl (
-  id SERIAL,
-  user VARCHAR,
-  email VARCHAR,
-  passwd VARCHAR,
-  PRIMARY KEY (id)
+CREATE TABLE IF NOT EXISTS appuser (
+    id SERIAL,
+    username VARCHAR,
+    email VARCHAR,
+    passwd VARCHAR,
+    PRIMARY KEY (id)
 );
 ```
 

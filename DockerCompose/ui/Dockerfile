@@ -4,8 +4,7 @@ FROM node:16
 WORKDIR /usr/app
 
 # Copy application dependencies
-COPY ./ui/*.* ./
-COPY ./ui/src ./
+COPY ./ui/ ./
 
 RUN npm install
 # For production

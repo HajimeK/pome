@@ -4,8 +4,7 @@ FROM node:16
 WORKDIR /usr/app
 
 # Copy application dependencies
-COPY API/package*.json ./
-COPY ./API/src ./
+COPY ./API/ ./
 
 RUN npm install
 RUN npm run build
@@ -13,4 +12,4 @@ RUN npm run build
 # RUN npm install --only=production
 
 EXPOSE 3000
-CMD [ "npm", "watch" ]
+CMD [ "npm", "start" ]
