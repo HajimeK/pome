@@ -68,15 +68,16 @@
         - [Target](#target)
           - [To AWS](#to-aws)
           - [To Azure](#to-azure)
+
 ## Page Design
 
 ![Site Design](sitedesign.png)
 
 ### Pages
+
 #### Top page
 
 Simply explains what I am and what I can.
-
 
 #### Profile Page
 
@@ -89,19 +90,17 @@ Skills tiled with material UI cards.
 Jumps to the site of the implementation using the skill.
 ![Skill Card](skill_card.svg)
 
-| element | description|
-|:--|:--|
-|PNG file| The top Web Site screen shot.(also has the link to the site) |
-|SKILL Name| Skill name listed in DB. |
-|Description| Skill Description in DB |
-|Share | For visitors to share the skill card in Linkdin |
-|Exlore | Link to the Web Site |
+| element     | description                                                  |
+| :---------- | :----------------------------------------------------------- |
+| PNG file    | The top Web Site screen shot.(also has the link to the site) |
+| SKILL Name  | Skill name listed in DB.                                     |
+| Description | Skill Description in DB                                      |
+| Share       | For visitors to share the skill card in Linkdin              |
+| Exlore      | Link to the Web Site                                         |
 
 #### Contact
 
 ### Implementation with Angular
-
-
 
 ```sh
 ng new pome
@@ -119,11 +118,17 @@ ng generate service experiences-api
 #### Comopnents
 
 ##### top
+
 ##### profile
+
 ##### experiences-head
+
 ##### experiences-container
+
 ##### experiences-content
+
 ##### experience-card
+
 ##### contact
 
 #### Services
@@ -135,6 +140,7 @@ ng generate service experiences-api
 ### Architecture
 
 #### API
+
 ##### Database
 
 ![](tabledesign.png)
@@ -148,11 +154,12 @@ export type Experience = {
   id?: number, // -1 if not assigned in DB
   title: string,
   description: string,
-  url?: string
+  url?: string,
 };
 ```
 
 ##### Funcions
+
 The functions created to exchange the model.
 
 ```js
@@ -164,6 +171,7 @@ delete(id: number): Experience {}
 ```
 
 - list(tagid?: number): Experience[]
+
   - list all the experiences
   - list all the experiences tagged with the
 
@@ -175,15 +183,13 @@ delete(id: number): Experience {}
 
 - delete(id: number): Experience {}
 
-
-
 ##### Endpoint API
 
 ###### GET /api/experience/list?tag=<tagid>
 
-| code | result | When |
-|-|-|-|
-| 200 | Success | Found entry and responded |
+| code | result  | When                      |
+| ---- | ------- | ------------------------- |
+| 200  | Success | Found entry and responded |
 
 Return list of experiences.
 The tagid is optional to get the category tag of the experience.
@@ -206,12 +212,13 @@ The following is returned in the response.
 
 Return an experience by index.
 
-| code | result | When |
-|-|-|-|
-| 200 | Success | Found entry and responded |
-| 404 | Not Found | The entry with the id is not found |
+| code | result    | When                               |
+| ---- | --------- | ---------------------------------- |
+| 200  | Success   | Found entry and responded          |
+| 404  | Not Found | The entry with the id is not found |
 
 The following is returned in the response.
+
 ```js
 {
   id: number,
@@ -223,12 +230,12 @@ The following is returned in the response.
 
 ###### POST /api/experience (token requied)
 
-| code | result | When |
-|-|-|-|
-| 201 | Created | Successfully created |
-| 401 | Unauthorized | token not acceptale |
-| 406 | Not acceptale | failed in the request with bad format or data |
-| 409 | Conflict | Already exists with the same title |
+| code | result        | When                                          |
+| ---- | ------------- | --------------------------------------------- |
+| 201  | Created       | Successfully created                          |
+| 401  | Unauthorized  | token not acceptale                           |
+| 406  | Not acceptale | failed in the request with bad format or data |
+| 409  | Conflict      | Already exists with the same title            |
 
 Create and experience.
 
@@ -236,6 +243,7 @@ Create an experience with the following formant.
 If the title is duplicated, return an error resopnse (409).
 
 - request body
+
 ```js
 {
   experience: {
@@ -249,7 +257,9 @@ If the title is duplicated, return an error resopnse (409).
 ```
 
 When correctly registered return code (201) returned with the created entry with an assigned id.
+
 - response body
+
 ```js
 {
   id: number,
@@ -261,14 +271,15 @@ When correctly registered return code (201) returned with the created entry with
 
 ###### PUT /api/experience (token requied)
 
-| code | result | When |
-|-|-|-|
-| 200 | Created | Successfully update |
-| 401 | Unauthorized | token not acceptable |
-| 404 | Not Found | the experience entry is not found in DB |
-| 406 | Not acceptale | failed in the request with bad format or data |
+| code | result        | When                                          |
+| ---- | ------------- | --------------------------------------------- |
+| 200  | Created       | Successfully update                           |
+| 401  | Unauthorized  | token not acceptable                          |
+| 404  | Not Found     | the experience entry is not found in DB       |
+| 406  | Not acceptale | failed in the request with bad format or data |
 
 - request
+
 ```js
 {
   id: number,
@@ -279,6 +290,7 @@ When correctly registered return code (201) returned with the created entry with
 ```
 
 - response
+
 ```js
 {
   id: number,
@@ -290,11 +302,11 @@ When correctly registered return code (201) returned with the created entry with
 
 ###### DELETE /experience/:id (token requied)
 
-| code | result | When |
-|-|-|-|
-| 200 | OK | Successfully deleted |
-| 400 | Bad request | token not accepted |
-| 404 | Not Found | When there is no entry with the id |
+| code | result      | When                               |
+| ---- | ----------- | ---------------------------------- |
+| 200  | OK          | Successfully deleted               |
+| 400  | Bad request | token not accepted                 |
+| 404  | Not Found   | When there is no entry with the id |
 
 ```js
 {
@@ -304,7 +316,6 @@ When correctly registered return code (201) returned with the created entry with
   url?: string
 };
 ```
-
 
 ##### Table
 
@@ -318,7 +329,6 @@ CREATE TABLE IF NOT EXISTS experience (
 );
 ```
 
-
 #### Tag
 
 ##### Model
@@ -326,11 +336,12 @@ CREATE TABLE IF NOT EXISTS experience (
 ```js
 export type Tag = {
   id?: number, // -1 if not assigned in DB
-  tag: string
+  tag: string,
 };
 ```
 
 ##### Model Functions
+
 ```js
 list(): Tag[]
 get(idx: number): Tag
@@ -338,42 +349,38 @@ create(tag: string): Tag {}
 delete(tag: string): Tag {}
 ```
 
-
 ##### Endpoint API
 
 ###### GET /api/tag/list
 
-| code | result | When |
-|-|-|-|
-| 200 | Success | Found entry and responded |
+| code | result  | When                      |
+| ---- | ------- | ------------------------- |
+| 200  | Success | Found entry and responded |
 
 ###### GET /api/tag/"tag name"
 
-| code | result | When |
-|-|-|-|
-| 200 | Success | Found entry and responded |
-| 404 | Not Found | The entry with the tag name is not found |
+| code | result    | When                                     |
+| ---- | --------- | ---------------------------------------- |
+| 200  | Success   | Found entry and responded                |
+| 404  | Not Found | The entry with the tag name is not found |
 
 ###### POST /api/tag/"tag name" (token required)
 
-
-| code | result | When |
-|-|-|-|
-| 201 | Created | Successfully created |
-| 400 | Bad request | token not acceptale or no name specified |
-| 409 | Conflict | Already exists with the same title |
+| code | result      | When                                     |
+| ---- | ----------- | ---------------------------------------- |
+| 201  | Created     | Successfully created                     |
+| 400  | Bad request | token not acceptale or no name specified |
+| 409  | Conflict    | Already exists with the same title       |
 
 ###### DELETE /api/tag/"tag name" (token required)
 
-
-| code | result | When |
-|-|-|-|
-| 200 | OK | Successfully deleted |
-| 400 | Bad request | token not accepted |
-| 404 | Not Found | When there is no entry with the tag name |
+| code | result      | When                                     |
+| ---- | ----------- | ---------------------------------------- |
+| 200  | OK          | Successfully deleted                     |
+| 400  | Bad request | token not accepted                       |
+| 404  | Not Found   | When there is no entry with the tag name |
 
 ##### Tables
-
 
 ```sql
 CREATE TABLE IF NOT EXISTS tag (
@@ -399,7 +406,6 @@ CREATE TABLE IF NOT EXISTS relexptag (
 );
 ```
 
-
 #### Application User
 
 ##### Model
@@ -423,10 +429,10 @@ async update(u: User): Promise<User>
 async delete(id: number): Promise<User>
 async authenticate(email: string, password: string): Promise<User | null>
 ```
+
 ##### Endpoint API
 
 ###### /api/user/login
-
 
 For registered user, you can login by sending below in your request body.
 
@@ -437,7 +443,7 @@ For registered user, you can login by sending below in your request body.
 }
 ```
 
-In the response body, you get below. Extract the token from below and set as *Authorization: Bearer <token>*, where you find **[token required]**.
+In the response body, you get below. Extract the token from below and set as _Authorization: Bearer <token>_, where you find **[token required]**.
 
 ```
 {
@@ -448,30 +454,30 @@ In the response body, you get below. Extract the token from below and set as *Au
 
 ###### GET /api/user/list [token required]
 
-| code | result | When |
-|-|-|-|
-| 200 | Success | Found entry and responded |
+| code | result  | When                      |
+| ---- | ------- | ------------------------- |
+| 200  | Success | Found entry and responded |
+
 \
 Get a list of users.
 
 ###### GET /api/user/:id
 
-| code | result | When |
-|-|-|-|
-| 200 | Success | Found entry and responded |
-| 404 | Not Found | The entry with the user id is not found |
+| code | result    | When                                    |
+| ---- | --------- | --------------------------------------- |
+| 200  | Success   | Found entry and responded               |
+| 404  | Not Found | The entry with the user id is not found |
 
 ###### POST /api/user [token required]
 
-
-| code | result | When |
-|-|-|-|
-| 201 | Created | Successfully created |
-| 401 | Unauthorized | token not acceptale or no name specified |
-| 409 | Conflict | Already exists with the same user email |
-
+| code | result       | When                                     |
+| ---- | ------------ | ---------------------------------------- |
+| 201  | Created      | Successfully created                     |
+| 401  | Unauthorized | token not acceptale or no name specified |
+| 409  | Conflict     | Already exists with the same user email  |
 
 Set the following in the request body.
+
 ```
 {
     id: number,
@@ -483,11 +489,11 @@ Set the following in the request body.
 
 ###### DELETE /api/user/:id [token required]
 
-| code | result | When |
-|-|-|-|
-| 200 | OK | Successfully deleted |
-| 401 | Unauthorized | token not accepted |
-| 404 | Not Found | When there is no entry with the user id |
+| code | result       | When                                    |
+| ---- | ------------ | --------------------------------------- |
+| 200  | OK           | Successfully deleted                    |
+| 401  | Unauthorized | token not accepted                      |
+| 404  | Not Found    | When there is no entry with the user id |
 
 ##### Tables
 
@@ -511,7 +517,6 @@ CREATE TABLE IF NOT EXISTS lvl (
 
 ##### Tables
 
-
 ```sql
 CREATE TABLE IF NOT EXISTS inquiry (
   id SERIAL,
@@ -526,13 +531,13 @@ CREATE TABLE IF NOT EXISTS inquiry (
 
 #### Launch locally with Docker Composer
 
-| tool | version |
-|:--|--:|
-| docker-compose | 1.25.5 |
-| Docker | 20.10.8 |
-| Node.js | 16.13.0 |
-| npm | 6.14.8 |
-| Angular CLI | 12.2.12 |
+| tool           | version |
+| :------------- | ------: |
+| docker-compose |  1.25.5 |
+| Docker         | 20.10.8 |
+| Node.js        | 16.13.0 |
+| npm            |  6.14.8 |
+| Angular CLI    | 12.2.12 |
 
 To launch the application for a local integration test,
 run the ui, middle api and database server with Docker Composer as a daemon.
@@ -571,6 +576,7 @@ Here I am going to try deploying to both AWS and Azure.
 
 ![CircleCI Environmental Variable](https://circleci.com/docs/2.0/env-vars/
 #adding-environment-variables-to-a-job)
+
 ###### PostreSQL
 
 ```
@@ -609,11 +615,46 @@ docker-compose down
 ```
 
 ##### Target
+
 ###### To AWS
 
 Set up PosgtreSQL environment with the following command.
 
 ```sh
+$ aws rds create-db-subnet-group \
+    --db-subnet-group-name              pome-db-subnet  \
+    --db-subnet-group-description       "Dedicated subnet for database."  \
+    --subnet-ids "subnet-id-0000000000" "subnet-id-1111111111"
+
+aws rds create-db-cluster \
+    --db-cluster-identifier        aurorapgsqlv1-cluster1 \
+    --engine                       aurora-postgresql \
+    --engine-version               11.9 \
+    --master-username              postgres \
+    --master-user-password         postgres \
+    --db-subnet-group-name         devvpc-db-sub-pvt \
+    --vpc-security-group-ids       sg-01f24d968d81d144a \
+    --availability-zones           "ap-northeast-1a" "ap-northeast-1c" "ap-northeast-1d" \
+    --port                         5432 \
+    --database-name                postgres
+
+aws rds create-db-instance \
+    --db-instance-identifier       aurorapgsqlv1-instance1 \
+    --db-instance-class            db.r5.large \
+    --engine                       aurora-postgresql \
+    --engine-version               11.9 \
+    --availability-zone            "ap-northeast-1c"  \
+    --db-cluster-identifier        aurorapgsqlv1-cluster1 \
+    --db-parameter-group-name      aurora-pgsql11
+
+aws rds create-db-instance \
+    --db-instance-identifier       aurorapgsqlv1-instance2 \
+    --db-instance-class            db.r5.large \
+    --engine                       aurora-postgresql \
+    --engine-version               11.9 \
+    --availability-zone            "ap-northeast-1d" \
+    --db-cluster-identifier        aurorapgsqlv1-cluster1 \
+    --db-parameter-group-name      aurora-pgsql11
 ```
 
 https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/WebsiteHosting.html
@@ -621,6 +662,7 @@ https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/WebsiteHosting.html
 Set up Elasti Beanstalk environment with the following command.
 
 ```sh
+
 ```
 
 https://docs.aws.amazon.com/ja_jp/elasticbeanstalk/latest/dg/using-features.managing.db.html
@@ -628,6 +670,7 @@ https://docs.aws.amazon.com/ja_jp/elasticbeanstalk/latest/dg/using-features.mana
 Set up S3 bucket for Web Hosting with the following command.
 
 ```sh
+
 ```
 
 ###### To Azure
@@ -635,6 +678,7 @@ Set up S3 bucket for Web Hosting with the following command.
 Set up PosgtreSQL environment with the following command.
 
 ```sh
+
 ```
 
 https://docs.microsoft.com/ja-jp/azure/developer/python/how-to-create-static-sites
@@ -642,12 +686,13 @@ https://docs.microsoft.com/ja-jp/azure/developer/python/how-to-create-static-sit
 Set up Azure AppService environment with the following command.
 
 ```sh
-```
 
+```
 
 https://docs.microsoft.com/ja-jp/azure/postgresql/flexible-server/tutorial-webapp-server-vnet
 
 Set up Azure Storage for Web Hosting with the following command.
 
 ```sh
+
 ```
