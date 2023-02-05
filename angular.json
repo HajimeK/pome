@@ -99,7 +99,7 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "https://github.com/HajimeK/pome/docs",
+            "baseHref": "https://hajimek.github.io/pome",
             "name": "HajimeK Software Engineer Portofolid"
           }
         }
