@@ -52,3 +52,4 @@ DockerCompose/api/API/.env
 DockerCompose/.env
 DockerCompose/api/API/spec/jasmine.json
 DockerCompose/api/API/dist/**
+.angular/*

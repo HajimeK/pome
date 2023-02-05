@@ -1,0 +1,145 @@
+{
+    "experiences":
+    [
+        {
+            "title": "AutoML with Azure ML",
+            "tag": [
+                "AIML",
+                "Azure"
+            ],
+            "note": "build and optimize an Azure ML pipeline using the Python SDK and a provided Scikit-learn model. This model is then compared to an Azure AutoML run.",
+            "urle": "https://github.com/HajimeK/AzureML_Optimizing_a_Pipeline"
+        },
+        {
+            "title": "Azure ML with real data",
+            "tag": [
+                "AIML"
+            ],
+            "note": "Using an traditional census data in Machine Learning studies, here I have derived prediction models to find potential donors. If the income is expected larger than 50K, we find the person as potential donors and put emphasis on the activity to ask for donations.",
+            "urle": "https://github.com/HajimeK/nd00333-capstone"
+        },
+        {
+            "title": "Person Detection with Intel OpenVINO",
+            "tag": [
+                "AIML"
+            ],
+            "note": "Using SSD, Single Shot Multibox Detector, to detect people in real-time streaming video. Can operate both with Intel CPU embedded GPU and Intel USB VPU",
+            "urle": "https://github.com/HajimeK/nd131-openvino-fundamentals-project-starter/blob/master/WRITEUP.md"
+        },
+        {
+            "title": "Fleet IoT",
+            "tag": [
+                "IOT",
+                "AIML"
+            ],
+            "note": "Fleet solution packaging project targeting the Japanese market. Install in-vehicle devices and collect data from platforms. From on-site data collection, provided the scoring function of the driver's behavior data using ML methods (4 months)",
+            "urle": "NA"
+        },
+        {
+            "title": "AIoT, Anormaly Detection",
+            "tag": [
+                "IoT",
+                "AIML"
+            ],
+            "note": "Reducing the failure rate of trucks is critical in logictics business. A machine lerning model for predictive analytics.",
+            "urle": "https://github.com/HajimeK/machine-learning/blob/master/projects/capstone/report/capstone.md"        },
+        {
+            "title": "AIoT Streaming Analytics",
+            "tag": [
+                "IoT",
+                "AIML"
+            ],
+            "note": "Workshop to empower a partner ready for AIoT(AI+IoT) streaming analytics",
+            "urle": "NA"
+        },
+        {
+            "title": "MLOps with Azure ML",
+            "tag": [
+                "Azure",
+                "AIML"
+            ],
+            "note": "Deploy trained models to an end point what is consumable with REST API calls",
+            "urle": "https://github.com/HajimeK/nd00333_AZMLND_C2/tree/master/starter_files"
+        },
+        {
+            "title": "Azure Performance",
+            "tag": [
+                "Azure"
+            ],
+            "note": "Investigate Azure perfomance using Application Insights, Logs and etc, and autoscale when needed",
+            "urle": "https://github.com/HajimeK/azure-performance-and-auto-scaling"
+        },
+        {
+            "title": "Azure Performance VMMS autoscaling",
+            "tag": [
+                "Azure"
+            ],
+            "note": "Setup an auto-scaling for a VMSS",
+            "urle": "https://github.com/HajimeK/azure-performance-and-auto-scaling/blob/master/subprojects/autoscaling-vmss/README.md"
+        },
+        {
+            "title": "Azure Performance with Azure Kubernetes Cluster and Runbook",
+            "tag": [
+                "Azure"
+            ],
+            "note": "Create alerts to trigger auto-scaling on an AKS cluster and trigger a RunBook to execute",
+            "urle": "https://github.com/HajimeK/azure-performance-and-auto-scaling/blob/master/subprojects/kubernetes-cluster/README.md"
+        },
+        {
+            "title": "Migrating to Azure",
+            "tag": [
+                "Azure"
+            ],
+            "note": "Making application to work with cloud managed services, like Azure Functions, service bus queue messaging",
+            "urle": "https://github.com/HajimeK/nd081-c3-Migrating-Non-Native-Cloud-Applications-project-starter"
+        },
+        {
+            "title": "Azure Web App with REST & Cosmos DB backend",
+            "tag": [
+                "Azure"
+            ],
+            "note": "Azure Web App with REAT API withAzure Functions and Mongo DB",
+            "urle": "https://github.com/HajimeK/nd081-c2-Building-and-deploying-cloud-native-applications-from-scratch-project-starter"
+        },
+        {
+            "title": "CMS app on Azure with AD credential",
+            "tag": [
+                "Azure"
+            ],
+            "note": "CMS app with OAuth2 with Sign in with Microsoft using the msal library, along with app logging.",
+            "urle": "https://github.com/HajimeK/nd081-c1-provisioning-microsoft-azure-vms-project-starter/blob/master/WRITEUP.md"
+        },
+        {
+            "title": "Blockchain applied Supply Chaing",
+            "tag": [
+                "Blockchain"
+            ],
+            "note": "Ethereum DApp that demonstrates a Supply Chain flow between a Seller and Buyer.",
+            "urle": "https://github.com/HajimeK/BlockchainDevND/tree/master/projects/project_6_Supply_Chain"
+        },
+        {
+            "title": "Blockchian applied to Flight Insureance",
+            "tag": [
+                "Blockchain"
+            ],
+            "note": "Decentralized App withvoting algorithm for flight insurance among passengers and flight companies",
+            "urle": "https://github.com/HajimeK/BlockchainDevND/tree/master/projects/project_FlightSurety"
+        },
+        {
+            "title": "Blockchain applied to NFT",
+            "tag": [
+                "Blockchain"
+            ],
+            "note": "Smart Contract app to exchange items in OpenSea market place using NFT",
+            "urle": "https://github.com/HajimeK/BlockchainDevND/tree/master/projects/project_Capstone"
+        },
+        {
+            "title": "Consumer Project IoT",
+            "tag": [
+                "IoT"
+            ],
+            "note": "As an engineer in a PoC to make customer product ready for IoT. Technology lead in defining subsequent commercialization requirements (1.5 year)",
+            "urle": "NA"
+        }
+    ]
+}

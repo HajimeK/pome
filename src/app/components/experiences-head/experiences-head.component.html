@@ -1,0 +1,11 @@
+<div class="header-container">
+    <header class="string-align">
+        <nav class="string" >
+            <div class="content" fxLayout="row wrap" fxLayoutGap="1.5% grid">
+                <div *ngFor="let tag of tags">
+                    <a [routerLink]="['/experience', tag.tag]">{{tag.tag}}</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+</div>
